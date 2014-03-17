@@ -1,0 +1,22 @@
+// Dota Units File
+"DOTAUnits"
+{
+	"Version"	"1"
+	//=================================================================================
+	//Trolls and Elves units below, by SinZ
+	//=================================================================================
+	"npc_trollsandelves_building_rock_1"
+	{
+		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"Model"						"models\buildings\building_plain_reference.mdl"	// Model.
+		
+		// Stats
+		//----------------------------------------------------------------
+		"StatusHealth"				"50"	//Base Health
+		"StatusHealthRegen"			"0"		//Health regeneration rate.
+		
+	}
+
+}
+
+

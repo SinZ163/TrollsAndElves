@@ -1,0 +1,49 @@
+// Dota Heroes File
+"DOTAAbilities"
+{
+	"Version"		"1"
+	//=================================================================================================================
+	// Trolls and Elves Abilities by SinZ
+	//=================================================================================================================
+	"trollsandelves_build_rock"
+	{
+		// General
+		// ------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"						"ability_datadriven"
+		"Maxlevel"						"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.0"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"				"POINT"
+				"ScriptFile"			"scripts/vscripts/abilityHooks.lua"
+				"Function"				"onBuildingSummon"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"building"				"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"gold"					"30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lumber"				"0"
+			}
+		}
+	}
+}
