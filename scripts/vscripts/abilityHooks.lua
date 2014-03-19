@@ -1,0 +1,2 @@
+function onBuildingSummon(keys)
+end

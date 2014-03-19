@@ -14,7 +14,6 @@
 		//----------------------------------------------------------------
 		"StatusHealth"				"50"	//Base Health
 		"StatusHealthRegen"			"0"		//Health regeneration rate.
-		
 	}
 
 }

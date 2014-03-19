@@ -1,4 +1,4 @@
-print('\n\nLoading Frota modules...')
+print('\n\nLoading TrollsAndElves modules...')
 
 function Dynamic_Wrap( mt, name )
     if Convars:GetFloat( 'developer' ) == 1 then
@@ -33,11 +33,11 @@ loadModule('TrollsAndElves')        -- Main frota framework
 
 if totalErrors == 0 then
     -- No loading issues
-    print('Loaded Frota modules successfully!\n')
+    print('Loaded TrollsAndElves modules successfully!\n')
 elseif totalErrors == 1 then
     -- One loading error
-    print('1 Frota module failed to load!\n')
+    print('1 TrollsAndElves module failed to load!\n')
 else
     -- More than one loading error
-    print(totalErrors..' Frota modules failed to load!\n')
+    print(totalErrors..' TrollsAndElves modules failed to load!\n')
 end

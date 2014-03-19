@@ -26,6 +26,13 @@
 				"ScriptFile"			"scripts/vscripts/abilityHooks.lua"
 				"Function"				"onBuildingSummon"
 			}
+			"SpawnUnit"
+			{
+				"UnitName"			"npc_trollsandelves_building_rock_1"
+				"UnitCount"			"1"
+				"SpawnRadius"	 	"0"
+				"Target"			"POINT"
+			}
 		}
 		"AbilitySpecial"
 		{
