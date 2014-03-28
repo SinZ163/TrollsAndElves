@@ -28,7 +28,7 @@ local function loadModule(name)
 end
 
 -- Load Frota
-loadModule('json')         -- Json Library
+loadModule('lib.json')         -- Json Library
 loadModule('TrollsAndElves')        -- Main frota framework
 
 if totalErrors == 0 then
