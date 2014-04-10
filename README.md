@@ -12,4 +12,4 @@ A custom dota 2 addon for Dota 2 based apon the warcraft 3 map with the same nam
  - If done correctly, the following folder should exist "Steam\steamapps\common\dota 2 beta\dota\addons\TrollsAndElves\HudSRC"
  - Reopen dota after each install / update (hud might not update)
  - Run the following command
-  - dota_local_custom_enable 1;dota_local_custom_game TrollsAndElves;dota_local_custom_map TrollsAndElves;dota_force_gamemode 15;update_addon_paths;dota_wait_for_players_to_load 0;dota_wait_for_players_to_load_timeout 10;map arenaodtr;
+  - dota_local_custom_enable 1;dota_local_custom_game TrollsAndElves;dota_local_custom_map TrollsAndElves;dota_force_gamemode 15;update_addon_paths;dota_wait_for_players_to_load 0;dota_wait_for_players_to_load_timeout 10;map arenaotdr;
