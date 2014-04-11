@@ -29,7 +29,7 @@ end
 
 -- Load Frota
 loadModule('lib.json')         -- Json Library
-loadModule('TrollsAndElves')        -- Main frota framework
+loadModule('TrollsAndElves')        -- Main program
 
 if totalErrors == 0 then
     -- No loading issues

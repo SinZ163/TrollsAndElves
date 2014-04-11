@@ -7,15 +7,44 @@
 	//=================================================================================
 	"npc_trollsandelves_building_rock_1"
 	{
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_fort"	// Class of entity of link to.
 		"Model"						"models\buildings\building_plain_reference.mdl"	// Model.
 		
+		"RingRadius"				"75"
 		// Stats
 		//----------------------------------------------------------------
 		"StatusHealth"				"50"	//Base Health
 		"StatusHealthRegen"			"0"		//Health regeneration rate.
 	}
+	"npc_trollsandelves_building_hall_1"
+	{
+		"BaseClass"				"npc_dota_building"
+		"Model"					"models\buildings\building_racks_melee_reference.mdl"
 
+		"RingRadius"				"200"
+
+		"StatusHealth"				"50"
+		"StatusHealthRegen"			"0"'
+
+		//Ability stuff
+		"AbilityLayout"				"6"
+		"Ability1"				"trollsandelves_destroy_unit"
+		"Ability2"				"doom_bringer_empty1"
+		"Ability3"				"doom_bringer_empty1"
+		"Ability4"				"doom_bringer_empty1"
+		"Ability5"				"doom_bringer_empty1"
+		"Ability6"				"trollsandelves_hall_upgrade_1"
+	}
+	"npc_trollsandelves_building_tree"
+	{
+		"BaseClass"				"npc_dota_building"
+		"Model"					"models\buildings\building_racks_ranged_reference.mdl"
+		
+		"RingRadius"				"200" //approx 4x4
+
+		"StatusHealth"				"50"
+		"StatusHealthRegen"			"0"
+	}
 }
 
 

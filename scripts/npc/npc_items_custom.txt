@@ -1,4 +1,295 @@
 "DOTAAbilities"
 {
+	"item_placetree"
+	{
+		// General
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"BaseClass"					"item_place_building_free" //this lets us actually place a building
+		"ID"	"2005"
+		
+		//Item Info
+		"ItemCost"					"256"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"				"1"
+		"SideShop"					"1"
+		
+		//Ability Info
+		"AbilityName"	"item_placetree"
+		
+		"AbilityCastRange"				"1024"
+		"AbilityCastPoint"				"0.0"
+		
+		"BuildingName"					"npc_trollsandelves_building_tree"
+		"PreventBlocking"				"1" //Yes, we want to alter the grid
 
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"alignment_grid_size"		"4" //This building is 4x4 on the gridnav
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"squares_per_side"		"1" //This field makes no sense, all it does is scale alignment_grid_size
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"building_size"			"512" //hopefully 4 grid units, in dota units.
+			}
+		}
+	}
+	"item_placehall"
+	{
+		// General
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"BaseClass"					"item_place_building_free" //this lets us actually place a building
+		"ID"	"2004"
+		
+		//Item Info
+		"ItemCost"					"64"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"				"1"
+		"SideShop"					"1"
+		
+		//Ability Info
+		"AbilityName"	"item_placehall"
+		
+		"AbilityCastRange"				"1024"
+		"AbilityCastPoint"				"0.0"
+		
+		"BuildingName"					"npc_trollsandelves_building_hall_1"
+		"PreventBlocking"				"1" //Yes, we want to alter the grid
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"alignment_grid_size"		"4" //This building is 4x4 on the gridnav
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"squares_per_side"		"1" //This field makes no sense, all it does is scale alignment_grid_size
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"building_size"			"512" //hopefully 4 grid units, in dota units.
+			}
+		}
+	}
+	"debug_placebuilding"
+	{
+		// General
+		// ------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+		"BaseClass"                                             "item_place_building_free"
+		"ID" "2003"
+		"AbilityName" "item_placebuilding"
+	   
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"                              "500"
+		"AbilityCastPoint"                              "0.0"
+	   
+		"BuildingName"                                  "npc_dota_badguys_tower1_mid"
+		"PreventBlocking"                               "1"
+	   
+		"AbilitySpecial"
+		{
+				"01"
+				{
+						"var_type"                              "FIELD_INTEGER"
+						"alignment_grid_size"                           "2"
+				}
+				"02"
+				{
+						"var_type"                              "FIELD_INTEGER"
+						"squares_per_side"                                      "1"
+				}
+				"03"
+				{
+						"var_type"                              "FIELD_INTEGER"
+						"building_size"                         "1024"
+				}
+		}
+
+		"ItemCost"						"90"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"SideShop"						"1"
+        }
+	//Troll Gloves (attack speed)
+	"trollsandelves_troll_atk_1"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_datadriven"
+		"AbilityTextureName"		"troll_attack_1"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"100"
+		"ItemShopTags"			"atk"
+		"ItemQuality"			"attackspeed"
+		"ItemStackable"			"0"
+		"ItemShareability"		"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"			"0"
+		"SideShop"			"1"
+		//===========================================================
+		// *   Ability Info
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_attack_speed"	"20"
+			}
+		}
+	}
+	"trollsandelves_troll_atk_2"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_datadriven"
+		"AbilityTextureName"		"troll_attack_2"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"200"
+		"ItemShopTags"			"atk"
+		"ItemQuality"			"attackspeed"
+		"ItemStackable"			"0"
+		"ItemShareability"		"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"			"0"
+		"SideShop"			"1"
+		//===========================================================
+		// *   Ability Info
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_attack_speed"	"40"
+			}
+		}
+	}
+	"trollsandelves_troll_atk_3"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_datadriven"
+		"AbilityTextureName"		"troll_attack_3"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"400"
+		"ItemShopTags"			"atk"
+		"ItemQuality"			"attackspeed"
+		"ItemStackable"			"0"
+		"ItemShareability"		"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"			"0"
+		"SideShop"			"1"
+		//===========================================================
+		// *   Ability Info
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_attack_speed"	"80"
+			}
+		}
+	}
+	"trollsandelves_troll_atk_4"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_datadriven"
+		"AbilityTextureName"		"troll_attack_4"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"800"
+		"ItemShopTags"			"atk"
+		"ItemQuality"			"attackspeed"
+		"ItemStackable"			"0"
+		"ItemShareability"		"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"			"0"
+		"SideShop"			"1"
+		//===========================================================
+		// *   Ability Info
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_attack_speed"	"100"
+			}
+		}
+	}
+	"trollsandelves_troll_atk_5"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_datadriven"
+		"AbilityTextureName"		"troll_attack_5"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"1600"
+		"ItemShopTags"			"atk"
+		"ItemQuality"			"attackspeed"
+		"ItemStackable"			"0"
+		"ItemShareability"		"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"			"0"
+		"SideShop"			"1"
+		//===========================================================
+		// *   Ability Info
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_attack_speed"	"200"
+			}
+		}
+	}
+	"trollsandelves_troll_atk_6"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_datadriven"
+		"AbilityTextureName"		"troll_attack_6"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"3200"
+		"ItemShopTags"			"atk"
+		"ItemQuality"			"attackspeed"
+		"ItemStackable"			"0"
+		"ItemShareability"		"ITEM_FULLY_SHAREABLE"
+		"ItemPermanent"			"0"
+		"SideShop"			"1"
+		//===========================================================
+		// *   Ability Info
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_attack_speed"	"400"
+			}
+		}
+	}
 }
