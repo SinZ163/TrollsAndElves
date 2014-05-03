@@ -1,13 +1,13 @@
 print('\n\nLoading TrollsAndElves modules...')
 
-function Dynamic_Wrap( mt, name )
-    if Convars:GetFloat( 'developer' ) == 1 then
-        local function w(...) return mt[name](...) end
-        return w
-    else
-        return mt[name]
-    end
-end
+--function Dynamic_Wrap( mt, name )
+--    if Convars:GetFloat( 'developer' ) == 1 then
+--        local function w(...) return mt[name](...) end
+--        return w
+--    else
+--        return mt[name]
+--    end
+--end
 
 -- Module loading system (it reports errors)
 local totalErrors = 0

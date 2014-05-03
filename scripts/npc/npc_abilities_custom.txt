@@ -34,39 +34,49 @@
 	{
 		// General
 		// ------------------------------------------------------------------------------------------------------------
-		"AbilityName"					"BuildRock"
-		"ID"							"5580"
-		
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"BaseClass"						"item_place_building_grid"
-		"Maxlevel"						"1"
+		"AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_ITEM"
+		"BaseClass"                                             "item_place_building_free"
+		"ID" "2003"
+		"AbilityName" "item_placebuilding"
+	    
+		//Tet Test
+		"ItemBaseLevel"	"1"
 		
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"500"
-		"AbilityCastPoint"				"0.0"
-		
-		"BuildingName"					"npc_trollsandelves_building_rock_1"
-		"PreventBlocking"				"0"
-		
+		"AbilityCastRange"                              "500"
+		"AbilityCastPoint"                              "0.0"
+	   
+		"BuildingName"                                  "npc_dota_badguys_tower1_mid"
+		"PreventBlocking"                               "1"
+	   
 		"AbilitySpecial"
 		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"alignment_grid_size"				"4"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"squares_per_side"					"2"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"building_size"				"400"
-			}
+				"01"
+				{
+						"var_type"                              "FIELD_INTEGER"
+						"alignment_grid_size"                           "2"
+				}
+				"02"
+				{
+						"var_type"                              "FIELD_INTEGER"
+						"squares_per_side"                                      "1"
+				}
+				"03"
+				{
+						"var_type"                              "FIELD_INTEGER"
+						"building_size"                         "1024"
+				}
 		}
+
+		//"ItemCost"						"90"
+		//"ItemShopTags"					"consumable"
+		//"ItemQuality"					"consumable"
+		//"ItemStackable"					"1"
+		//"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		//"ItemPermanent"					"0"
+		//"ItemInitialCharges"			"1"
+		//"SideShop"						"1"
 	}
 	"trollsandelves_troll_invis"
 	{

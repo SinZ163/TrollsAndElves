@@ -1,9 +1,18 @@
 ﻿package  {
-	
+	// Flash Libraries
 	import flash.display.MovieClip;
-	
-	import ValveLib.Globals;
+
+    // Valve Libaries
+    import ValveLib.Globals;
     import ValveLib.ResizeManager;
+    import scaleform.clik.events.ButtonEvent;
+
+    // Timer
+    import flash.utils.Timer;
+    import flash.events.TimerEvent;
+
+    // For chrome browser
+    import flash.utils.getDefinitionByName;
 	
 	public class TrollsAndElves extends MovieClip {
 		//Game API stuff
@@ -48,8 +57,6 @@
 			//trace("###TrollsAndElves killing inventory UI");
 			//PrintTable(globals.Loader_inventory.movieClip.inventory, 1);
 			//globals.Loader_inventory.movieClip.removeChild(globals.Loader_inventory.movieClip.inventory);
-			trace("###TrollsAndElves Init scoreboard diagnostics");
-			PrintTable(globals.Loader_scoreboard, 1);
 			trace("##TrollsAndElves Starting TrollsAndElves HUD");
 			visible = true;
 			
@@ -111,8 +118,10 @@
             this.scaleX = re.ScreenWidth/maxStageWidth;
             this.scaleY = re.ScreenHeight/maxStageHeight;
 		}
-		//Shamelessly copied from oldHudSrc Frota
-		public function strRep(str, count) {
+		
+		
+		// Function to repeat a string many times
+        public function strRep(str, count) {
             var output = "";
             for(var i=0; i<count; i++) {
                 output = output + str;
@@ -120,22 +129,113 @@
 
             return output;
         }
-		public function PrintTable(t, indent) {
-            for(var key in t) {
-                var v = t[key];
 
-                if(typeof(v) == "object") {
-                    trace(strRep("\t", indent)+key+":")
-                    PrintTable(v, indent+1);
+        public function isPrintable(t) {
+        	if(t == null || t is Number || t is String || t is Boolean || t is Function || t is Array) {
+        		return true;
+        	}
+        	// Check for vectors
+        	if(flash.utils.getQualifiedClassName(t).indexOf('__AS3__.vec::Vector') == 0) return true;
 
-                    if(v.gameAPI) {
-                        trace(strRep("\t", indent+1)+"gameAPI:")
-                        PrintTable(v.gameAPI, indent+2);
-                    }
-                } else {
-                    trace(strRep("\t", indent)+key.toString()+": "+v.toString());
-                }
-            }
-        }	
+        	return false;
+        }
+
+        public function PrintTable(t, indent=0, done=null) {
+        	var i:int, key, key1, v:*;
+
+        	// Validate input
+        	if(isPrintable(t)) {
+        		trace("PrintTable called with incorrect arguments!");
+        		return;
+        	}
+
+        	if(indent == 0) {
+        		trace(t.name+" "+t+": {")
+        	}
+
+        	// Stop loops
+        	done ||= new flash.utils.Dictionary(true);
+        	if(done[t]) {
+        		trace(strRep("\t", indent)+"<loop object> "+t);
+        		return;
+        	}
+        	done[t] = true;
+
+        	// Grab this class
+        	var thisClass = flash.utils.getQualifiedClassName(t);
+
+        	// Print methods
+			for each(key1 in flash.utils.describeType(t)..method) {
+				// Check if this is part of our class
+				if(key1.@declaredBy == thisClass) {
+					// Yes, log it
+					trace(strRep("\t", indent+1)+key1.@name+"()");
+				}
+			}
+
+			// Check for text
+			if("text" in t) {
+				trace(strRep("\t", indent+1)+"text: "+t.text);
+			}
+
+			// Print variables
+			for each(key1 in flash.utils.describeType(t)..variable) {
+				key = key1.@name;
+				v = t[key];
+
+				// Check if we can print it in one line
+				if(isPrintable(v)) {
+					trace(strRep("\t", indent+1)+key+": "+v);
+				} else {
+					// Open bracket
+					trace(strRep("\t", indent+1)+key+": {");
+
+					// Recurse!
+					PrintTable(v, indent+1, done)
+
+					// Close bracket
+					trace(strRep("\t", indent+1)+"}");
+				}
+			}
+
+			// Find other keys
+			for(key in t) {
+				v = t[key];
+
+				// Check if we can print it in one line
+				if(isPrintable(v)) {
+					trace(strRep("\t", indent+1)+key+": "+v);
+				} else {
+					// Open bracket
+					trace(strRep("\t", indent+1)+key+": {");
+
+					// Recurse!
+					PrintTable(v, indent+1, done)
+
+					// Close bracket
+					trace(strRep("\t", indent+1)+"}");
+				}
+        	}
+
+        	// Get children
+        	if(t is MovieClip) {
+        		// Loop over children
+	        	for(i = 0; i < t.numChildren; i++) {
+	        		// Open bracket
+					trace(strRep("\t", indent+1)+t.name+" "+t+": {");
+
+					// Recurse!
+	        		PrintTable(t.getChildAt(i), indent+1, done);
+
+	        		// Close bracket
+					trace(strRep("\t", indent+1)+"}");
+	        	}
+        	}
+
+        	// Close bracket
+        	if(indent == 0) {
+        		trace("}");
+        	}
+        }
 	}	
 }
