@@ -62,8 +62,8 @@
 			
 			LumberOverlay
 			lumberOverlay = new LumberOverlay();
-			//addChild(lumberOverlay);
-			//lumberOverlay.visible = true;
+			addChild(lumberOverlay);
+			lumberOverlay.visible = true;
 			lumberOverlay.setLumber("9876"); //TEMP just to test if it looks nice
 			//Resizing is blitz
 			Globals.instance.resizeManager.AddListener(this);
