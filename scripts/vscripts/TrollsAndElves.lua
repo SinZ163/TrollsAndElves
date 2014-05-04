@@ -13,8 +13,9 @@ function TrollsAndElvesGameMode:InitGameMode()
 	Msg("Hello World, My name is TrollsAndElves!")
 	
 	--Event registration --
-	ListenToGameEvent('entity_hurt', Dynamic_Wrap(TrollsAndElvesGameMode.onEntityHurt), self)
-	ListenToGameEvent('player_chat', Dynamic_wrap(TrollsAndElvesGameMode.onChatMessage), self)
+	ListenToGameEvent('entity_hurt', Dynamic_Wrap(TrollsAndElvesGameMode,"onEntityHurt"), self)
+	ListenToGameEvent('player_chat', Dynamic_Wrap(TrollsAndElvesGameMode,"onChatMessage"), self)
+	ListenToGameEvent('player_connect_full', Dynamic_Wrap(TrollsAndElvesGameMode,"onPlayerConnect"), self)
 	-- Start thinkers
     --self._scriptBind:BeginThink('TrollsAndElvesThink', Dynamic_Wrap(TrollsAndElvesGameMode, 'Think'), 0.1)
 end
@@ -28,6 +29,12 @@ end
 
 function TrollsAndElvesGameMode:onChatMessage(keys)
 	print(keys.message)
+	print(JSON:encode_pretty(keys))
+end
+
+function TrollsAndElvesGameMode:onPlayerConnect(keys)
+	print("Player connected!")
+	--print(EntIndexToHScript(keys.index + 1))
 	print(JSON:encode_pretty(keys))
 end
 

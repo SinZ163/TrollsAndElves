@@ -50,23 +50,25 @@
 		}
 		
 		public function onLoaded() : void {
-			trace('globals:');
-			PrintTable(globals, 1);
+			//trace('globals:');
+			//PrintTable(globals, 1);
+			
 			// constructor code
-			// Note this doesn't run for some reason...
 			//trace("###TrollsAndElves killing inventory UI");
 			//PrintTable(globals.Loader_inventory.movieClip.inventory, 1);
 			//globals.Loader_inventory.movieClip.removeChild(globals.Loader_inventory.movieClip.inventory);
 			trace("##TrollsAndElves Starting TrollsAndElves HUD");
 			visible = true;
 			
-			//LumberOverlay
+			LumberOverlay
 			lumberOverlay = new LumberOverlay();
-			addChild(lumberOverlay);
-			lumberOverlay.visible = true;
+			//addChild(lumberOverlay);
+			//lumberOverlay.visible = true;
 			lumberOverlay.setLumber("9876"); //TEMP just to test if it looks nice
 			//Resizing is blitz
 			Globals.instance.resizeManager.AddListener(this);
+			
+			globals.Loader_inventory.movieClip.inventory.quickbuy = null;
 		}
 		
 		public function onResize(re:ResizeManager) : * {
