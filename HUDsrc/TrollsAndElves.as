@@ -60,7 +60,6 @@
 			trace("##TrollsAndElves Starting TrollsAndElves HUD");
 			visible = true;
 			
-			LumberOverlay
 			lumberOverlay = new LumberOverlay();
 			addChild(lumberOverlay);
 			lumberOverlay.visible = true;
@@ -68,13 +67,14 @@
 			//Resizing is blitz
 			Globals.instance.resizeManager.AddListener(this);
 			
-			globals.Loader_inventory.movieClip.inventory.quickbuy = null;
+			//globals.Loader_inventory.movieClip.inventory.quickbuy = null;
 		}
 		
 		public function onResize(re:ResizeManager) : * {
 			// Update the stage width
 			trace("### Resizing");
 			if (re.IsWidescreen()) {
+				trace("### Widescreen detected!");
 				//16:x
 				if (re.Is16by9()) {
 					if (curRes != 0) {
@@ -106,7 +106,7 @@
 				trace("###TrollsAndElves Resizing for 4:3 resolution");
 				if (curRes != 2) {
 					curRes = 2;
-					//lumberOverlay.onResize(2, globals.instance.Game.IsHUDFlipped());
+					//lumberOverlay.onScreenResize(2, globals.instance.Game.IsHUDFlipped());
 					lumberOverlay.onScreenResize(2, false);
 				}
 				resWidth = res4by3Width;
@@ -116,7 +116,7 @@
 			
 			maxStageHeight = re.ScreenHeight / re.ScreenWidth * resWidth;
 			maxStageWidth = re.ScreenWidth / re.ScreenHeight * resHeight;
-            // Scale hud to screen
+            //Scale hud to screen
             this.scaleX = re.ScreenWidth/maxStageWidth;
             this.scaleY = re.ScreenHeight/maxStageHeight;
 		}

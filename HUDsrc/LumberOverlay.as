@@ -13,13 +13,13 @@
 		private var right16by9X = 1703.35;
 		
 		private var  left16by10X = 0;
-		private var right16by10X = 1000;
+		private var right16by10X = 1470;
 		
 		private var  left4by3X = 0;
 		private var right4by3X = 800;
 		
 		private var  res16by9Y = 919.35;
-		private var res16by10Y = 1000;
+		private var res16by10Y = 897;
 		private var   res4by3Y = 600;
 		
 	
