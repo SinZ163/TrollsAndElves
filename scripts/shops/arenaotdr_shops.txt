@@ -2,12 +2,17 @@
 {
 	"consumables"
 	{
-		"item_placebuilding"	"1"
+		"item_placetree"	"1"
 	}
 
 	"attributes"
 	{
-
+		"item_troll_atk_1"	"1"
+		"item_troll_atk_2"	"1"
+		"item_troll_atk_3"	"1"
+		"item_troll_atk_4"	"1"
+		"item_troll_atk_5"	"1"
+		"item_troll_atk_6"	"1"
 	}
 
 	"weapons_armor"

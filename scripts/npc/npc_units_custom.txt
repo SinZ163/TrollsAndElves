@@ -16,6 +16,7 @@
 		"StatusHealth"				"50"	//Base Health
 		"StatusHealthRegen"			"0"		//Health regeneration rate.
 	}
+
 	"npc_trollsandelves_building_hall_1"
 	{
 		"BaseClass"				"npc_dota_building"
@@ -24,7 +25,7 @@
 		"RingRadius"				"200"
 
 		"StatusHealth"				"50"
-		"StatusHealthRegen"			"0"'
+		"StatusHealthRegen"			"0"
 
 		//Ability stuff
 		"AbilityLayout"				"6"
@@ -35,6 +36,7 @@
 		"Ability5"				"doom_bringer_empty1"
 		"Ability6"				"trollsandelves_hall_upgrade_1"
 	}
+
 	"npc_trollsandelves_building_tree"
 	{
 		"BaseClass"				"npc_dota_building"
