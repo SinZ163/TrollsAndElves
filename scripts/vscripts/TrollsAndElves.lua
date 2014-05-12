@@ -22,9 +22,10 @@ end
 
 function TrollsAndElvesGameMode:onEntityHurt(keys)
 	print("HELLO?!")
-	print(JSON:encode_pretty(keys))
-	attacker = EntIndexToHScript(keys.entindex_attacker)
-	print(JSON:encode_pretty(attacker)) --Hrmmm
+	print(JSON:encode_pretty(self))
+	attacker = EntIndexToHScript(self.entindex_attacker)
+	print("Model: "..attacker:GetModelName())
+	print(JSON:encode_pretty(self)) --Hrmmm
 end
 
 function TrollsAndElvesGameMode:onChatMessage(keys)
@@ -36,6 +37,8 @@ function TrollsAndElvesGameMode:onPlayerConnect(keys)
 	print("Player connected!")
 	--print(EntIndexToHScript(keys.index + 1))
 	print(JSON:encode_pretty(keys))
+	player = EntIndexToHScript(self.index + 1)
+	player:SetTeam(DOTA_TEAM_GOODGUYS)
 end
 
 --TODO: actually get this thing online
