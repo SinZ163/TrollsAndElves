@@ -10,8 +10,10 @@ function TrollsAndElvesGameMode:new (o)
     return o
 end
 function TrollsAndElvesGameMode:InitGameMode()
+
 	Msg("Hello World, My name is TrollsAndElves!")
 	
+	Entities:FindByClassname(nil, "dota_base_game_mode"):SetFogOfWarDisabled(true)
 	--Event registration --
 	ListenToGameEvent('entity_hurt', Dynamic_Wrap(TrollsAndElvesGameMode,"onEntityHurt"), self)
 	ListenToGameEvent('player_chat', Dynamic_Wrap(TrollsAndElvesGameMode,"onChatMessage"), self)
@@ -33,7 +35,16 @@ function TrollsAndElvesGameMode:onChatMessage(keys)
 	print(JSON:encode_pretty(keys))
 end
 
+local treesinit = false
 function TrollsAndElvesGameMode:onPlayerConnect(keys)
+	if treesinit == false then
+		for k,v in pairs(Entities:FindAllByClassname("ent_dota_tree")) do 
+		    local u = CreateUnitByName( "npc_tree_dummy", Vector(0,0,0), true, nil, nil, 2)
+		    u:SetOrigin(v:GetOrigin())
+		    u:AddNewModifier(v, nil, "modifier_phased", {duration = -1}) 
+		end
+		treesinit = true
+	end
 	print("Player connected!")
 	--print(EntIndexToHScript(keys.index + 1))
 	print(JSON:encode_pretty(keys))
