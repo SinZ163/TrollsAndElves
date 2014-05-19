@@ -93,12 +93,65 @@
 
 //All items below this point fail at loading
 
+	"item_lycan_paw"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"248"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_lycan_paw"
+		"ItemKillable"					"0"
+
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"600"
+		"ItemShopTags"					""
+		"ItemQuality"					"common"
+		"SideShop"						"1"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"lycan_paws_speed"
+			{
+				"Passive" "1"
+				"IsHidden"  "1"
+
+				"Properties"
+				{
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"		"%movespeed_bonus"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"item_level"			"1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movespeed_bonus"		"75"
+			}
+		}
+
+	}
+
 	//Troll Gloves (attack speed)
 	"item_troll_atk_1"
 	{
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"			"item_datadriven"
-		"ID"				"3000"
+		"ID"				"500"
 		"AbilityTextureName"		"troll_attack_1"
 		
 		//===========================================================
@@ -112,6 +165,28 @@
 		"ItemKillable"					"0"
 		//===========================================================
 		// *   Ability Info
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"troll_attackspeed"
+				"Target"	"CASTER"
+			}
+		}
+		"Modifiers"
+        {
+            "troll_attackspeed"
+            {
+               "Passive" "1"
+               "IsHidden"  "1"
+ 
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"          "80"
+                }
+             }
+        }
+
 		"AbilitySpecial"
 		{
 			"01"

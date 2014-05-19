@@ -19,6 +19,301 @@
 			}
 		}
 	}
+
+	"trollsandelves_hidden_leech"
+	{
+		"BaseClass"	"ability_datadriven"
+
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_hidden_leech"
+				"Target"		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_hidden_leech"
+			{
+				"IsDebuff"		"0"
+				"IsPurgable"		"0"
+				"IsStunDebuff"		"0"
+				"IsHidden"		"1"
+					
+				"ThinkInterval"		"0.1"
+				"Duration"		"-1"
+				
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"ability_hidden_leech.lua"
+						"Function"	"OnIntervalThink"
+					}
+				}
+				"OnDestroy"
+				{
+			//		"RunScript"
+			//		{
+			//			"ScriptFile"	"ability_hidden_leech.lua"
+			//			"Function"	"OnDestroy"
+			//		}
+				}
+			}
+		}
+	}
+	"trollsandelves_resume_building"
+	{
+		"BaseClass"	"ability_datadriven"
+		
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"AbilityCastPoint"	"0.001 0.001 0.001 0.001"
+		"AbilityChannelTime"	"99"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"construct_building_think"
+				"Target"	"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile" "ability_construct.lua"
+				"Function"	"OnSpellStart_Resume"
+				"Target"	"TARGET"
+			}		
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile" "ability_construct.lua"
+				"Function"	"OnChannelInterrupted"
+			}
+			"RemoveModifier"
+			{
+				"ModifierName"		"construct_building_think"
+				"Target"			"UNIT"	
+			}
+
+		}
+
+		"Modifiers"
+		{
+			"construct_building_think"
+			{
+				"IsDebuff"		"0"
+				"IsPurgable"		"0"
+				"IsHidden"		"1"
+
+				"ThinkInterval"		"0.1"
+				"Duration"		"99"
+				
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"ability_construct.lua"
+						"Function"	"OnIntervalThink"
+					}
+				}
+			}
+		}
+	}
+
+	"trollsandelves_construct_building"
+	{
+		"BaseClass"	"ability_datadriven"
+
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityCastPoint"				"0.001 0.001 0.001 0.001"
+		"AbilityChannelTime"	"99"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile" "ability_construct.lua"
+				"Function"	"OnSpellStart"
+				"Target"	"POINT"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"construct_building_think"
+				"Target"	"CASTER"
+			}
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile" "ability_construct.lua"
+				"Function"	"OnChannelInterrupted"
+			}
+			"RemoveModifier"
+			{
+				"ModifierName"		"construct_building_think"
+				"Target"			"UNIT"	
+			}
+
+		}
+
+		"Modifiers"
+		{
+			"construct_building_think"
+			{
+				"IsDebuff"		"0"
+				"IsPurgable"		"0"
+				"IsHidden"		"1"
+
+				"ThinkInterval"		"0.1"
+				"Duration"		"99"
+				
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"ability_construct.lua"
+						"Function"	"OnIntervalThink"
+					}
+				}
+			}
+		}
+	}
+
+	"trollsandelves_tether_proxy"
+	{
+		"BaseClass"		"ability_datadriven"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM | DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_ALL | DOTA_UNIT_TARGET_TREE"
+
+		"AbilityCastRange"				"250"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"ability_tether_proxy.lua"
+				"Function"		"OnSpellStart"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"trollsandelves_tether_leech"
+				"Target" "CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"trollsandelves_tether_leech"
+			{
+				"IsDebuff"		"0"
+				"IsPurgable"		"0"
+				"IsStunDebuff"		"0"
+				"IsHidden"		"1"
+					
+				"ThinkInterval"		"1"
+				"Duration"		"-1"
+				
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"ability_tether_proxy.lua"
+						"Function"	"OnIntervalThink"
+					}
+				}
+			}
+		}
+	}
+
+	"trollsandelves_hidden_tether"
+	{
+		"BaseClass"		"wisp_tether"
+
+		"ID"							"5485"													
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM | DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_ALL"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.001 0.001 0.001 0.001"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityDuration"				"-1"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"40 40 40 40"
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"250"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"300"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"movespeed"					"17"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"				"0.75 1.25 1.75 2.25"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"latch_distance"			"700 700 700 700"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"latch_speed"				"1000 1000 1000 1000"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tether_duration"			"12.0 12.0 12.0 12.0"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tether_heal_amp"			"1.5"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"			"-100"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attackslow_tooltip"			"-100"
+			}
+		}
+	}
 	"trollsandelves_hall_upgrade_1"
 	{
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"

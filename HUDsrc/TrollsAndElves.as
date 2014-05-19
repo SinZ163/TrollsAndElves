@@ -49,6 +49,13 @@
 			trace("##TrollsAndElves Hello World from the Constructor.");
 		}
 		
+		public function lumberEvent(args:Object) : void {
+			if (globals.Players.GetLocalPlayer() == args.pid)
+			{
+				lumberOverlay.setLumber(args.lumber);
+			}
+		}
+
 		public function onLoaded() : void {
 			//trace('globals:');
 			//PrintTable(globals, 1);
@@ -63,7 +70,8 @@
 			lumberOverlay = new LumberOverlay();
 			addChild(lumberOverlay);
 			lumberOverlay.visible = true;
-			lumberOverlay.setLumber("9876"); //TEMP just to test if it looks nice
+			lumberOverlay.setLumber("1000"); //TEMP just to test if it looks nice
+			gameAPI.SubscribeToGameEvent("trollsandelves_lumber", this.lumberEvent);
 			//Resizing is blitz
 			Globals.instance.resizeManager.AddListener(this);
 			

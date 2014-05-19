@@ -9,6 +9,8 @@
 		"ModelScale"			"0.6"
 		"Ability1"			"trollsandelves_build_rock"
 		//"Ability2"			"trollsandelves_wisp_harvest"
+		"Ability2"			"trollsandelves_construct_building"
+		"Ability3"			"trollsandelves_resume_building"
 	}
 	"npc_dota_hero_trollsandelves_troll"
 	{
@@ -16,15 +18,29 @@
 		"ModelScale"			"1.5"
 		"Ability1"			"trollsandelves_troll_invis"
 	}
-	"npc_dota_hero_trollsandelves_angel"
-	{
-		"override_hero"			"npc_dota_hero_crystal_maiden"
-		"ModelScale"			"0.6"
-	}
+//	"npc_dota_hero_trollsandelves_angel"
+//	{
+	//	"override_hero"			"npc_dota_hero_crystal_maiden"
+	//	"ModelScale"			"0.6"
+//	}
 	"npc_dota_hero_trollsandelves_dog"
 	{
 		"override_hero"			"npc_dota_hero_lycan"
 		"Model"				"models/heroes/lycan/lycan_wolf.mdl"
 		"Ability1"			"trollsandelves_troll_invis"
+	}
+	"npc_wisp_bro"
+	{
+		"override_hero"	"npc_dota_hero_wisp"
+		"Ability1"	"trollsandelves_tether_proxy"
+		"Ability2"	"trollsandelves_hidden_tether"					
+		"Ability3"					"wisp_relocate"
+		"Ability4"					""
+		"Ability5"					""
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					""
+		"Ability9"					""
+		"Ability10"					""
 	}
 }

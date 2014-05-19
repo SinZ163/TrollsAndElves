@@ -26,5 +26,14 @@
 		"pid"			"byte"
 		"lumber"		"uint64"
 	}
+	"trollsandelves_started_building"
+	{
+		"pid"			"byte"
+		"time_remaining"		"uint64"
+	}
+	"trollsandelves_started_building"
+	{
+		"pid"			"byte"	
+	}
 }
 
