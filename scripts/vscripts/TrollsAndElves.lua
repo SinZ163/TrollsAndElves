@@ -18,26 +18,22 @@ function TrollsAndElvesGameMode:InitGameMode()
 	ListenToGameEvent('entity_hurt', Dynamic_Wrap(TrollsAndElvesGameMode,"onEntityHurt"), self)
 	ListenToGameEvent('player_chat', Dynamic_Wrap(TrollsAndElvesGameMode,"onChatMessage"), self)
 	ListenToGameEvent('player_connect_full', Dynamic_Wrap(TrollsAndElvesGameMode,"onPlayerConnect"), self)
+	ListenToGameEvent("dota_item_purchased", Dynamic_Wrap(TrollsAndElvesGameMode, "OnItemPurchased"), self)
 	-- Start thinkers
     --self._scriptBind:BeginThink('TrollsAndElvesThink', Dynamic_Wrap(TrollsAndElvesGameMode, 'Think'), 0.1)
 end
 
 function TrollsAndElvesGameMode:onEntityHurt(keys)
-	print("HELLO?!")
-	print(JSON:encode_pretty(self))
-	attacker = EntIndexToHScript(self.entindex_attacker)
-	print("Model: "..attacker:GetModelName())
-	print(JSON:encode_pretty(self)) --Hrmmm
+
 end
 
 function TrollsAndElvesGameMode:onChatMessage(keys)
-	print(keys.message)
-	print(JSON:encode_pretty(keys))
+
 end
 
 local treesinit = false
 function TrollsAndElvesGameMode:onPlayerConnect(keys)
-	if treesinit == false then
+	if treesinit == false then 
 		for k,v in pairs(Entities:FindAllByClassname("ent_dota_tree")) do 
 		    local u = CreateUnitByName( "npc_tree_dummy", Vector(0,0,0), true, nil, nil, 2)
 		    u:SetOrigin(v:GetOrigin())
@@ -45,11 +41,25 @@ function TrollsAndElvesGameMode:onPlayerConnect(keys)
 		end
 		treesinit = true
 	end
-	print("Player connected!")
-	--print(EntIndexToHScript(keys.index + 1))
-	print(JSON:encode_pretty(keys))
+
 	player = EntIndexToHScript(self.index + 1)
 	player:SetTeam(DOTA_TEAM_GOODGUYS)
+end
+
+function TrollsAndElvesGameMode:ModifyLumber(player, sum) --negative to reduce
+	local lumber = MData:For("PlayerLumber", player)
+	if sum > lumber.Amount then 
+		lumber.Amount = lumber.Amount + sum
+		return true
+	else return false
+	end
+	
+end
+
+function TrollsAndElvesGameMode:OnItemPurchased(keys)
+	local item = ItemsCustomKV[item]
+	local player = EntIndexToHScript(PlayerResource:GetPlayer(keys.PlayerID))
+	if item.LumberCost and item.LumberCost > 0 then self:ModifyLumber(player, item.LumberCost) end
 end
 
 --TODO: actually get this thing online

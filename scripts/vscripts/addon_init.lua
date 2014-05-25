@@ -31,7 +31,8 @@ end
 loadModule('lib.json')         -- Json Library
 loadModule('TrollsAndElves')        -- Main program
 require("moondota/moondota")
-require("lumber_store")
+require("moondota/abilities/trollsandelves_tether_proxy")
+require("moondota/abilities/trollsandelves_construct")
 
 if totalErrors == 0 then
     -- No loading issues
@@ -51,6 +52,11 @@ Convars:RegisterCommand("quell", function(args)
         h:AddItem(firework)
         end, "Fuck", 0)
 
+Convars:RegisterCommand("nametest2", function(args)
+    local h = Convars:GetCommandClient():GetAssignedHero()
+        print(h:GetUnitName())
+        end, "Fuck", 0)
+
 Convars:RegisterCommand("invo2", function(args)
     local h = Convars:GetCommandClient():GetAssignedHero()
         local firework = CreateHeroForPlayer( "npc_dota_hero_wisp", Convars:GetCommandClient())
@@ -62,3 +68,6 @@ Convars:RegisterCommand("invo3", function(args)
         local firework = CreateHeroForPlayer( "npc_dota_hero_invoker", Convars:GetCommandClient())
         FindClearSpaceForUnit(firework, h, false)
         end, "Fuck", 0)
+
+UnitsCustomKV = LoadKeyValues("scripts/npc/npc_units_custom.txt")
+ItemsCustomKV = LoadKeyValues("scripts/npc/npc_items_custom.txt")

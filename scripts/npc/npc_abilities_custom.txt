@@ -20,6 +20,23 @@
 		}
 	}
 
+	"trollsandelves_building_upgrade"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"	"ability_datadriven"
+		"MaxLevel"		"1"	
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/datadriven/ability_building_upgrade.lua"
+				"Function"	"OnSpellStart"
+			}
+		}
+	}
+
+
 	"trollsandelves_hidden_leech"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -51,15 +68,15 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"ability_hidden_leech.lua"
-						"Function"	"OnIntervalThink"
+						"ScriptFile"	"scripts/vscripts/datadriven/ability_hidden_leech.lua"
+						"Function"	"OnIntervalThink_modifier_trollsandelves_hidden_leech"
 					}
 				}
 				"OnDestroy"
 				{
 			//		"RunScript"
 			//		{
-			//			"ScriptFile"	"ability_hidden_leech.lua"
+			//			"ScriptFile"	"scripts/vscripts/datadriven/ability_hidden_leech.lua"
 			//			"Function"	"OnDestroy"
 			//		}
 				}
@@ -81,12 +98,12 @@
 		{
 			"ApplyModifier"
 			{
-				"ModifierName"	"construct_building_think"
+				"ModifierName"	"modifier_trollsandelves_construct_think"
 				"Target"	"CASTER"
 			}
 			"RunScript"
 			{
-				"ScriptFile" "ability_construct.lua"
+				"ScriptFile" "scripts/vscripts/datadriven/ability_construct.lua"
 				"Function"	"OnSpellStart_Resume"
 				"Target"	"TARGET"
 			}		
@@ -96,12 +113,12 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile" "ability_construct.lua"
+				"ScriptFile" "scripts/vscripts/datadriven/ability_construct.lua"
 				"Function"	"OnChannelInterrupted"
 			}
 			"RemoveModifier"
 			{
-				"ModifierName"		"construct_building_think"
+				"ModifierName"		"modifier_trollsandelves_construct_think"
 				"Target"			"UNIT"	
 			}
 
@@ -109,11 +126,11 @@
 
 		"Modifiers"
 		{
-			"construct_building_think"
+			"modifier_trollsandelves_construct_think"
 			{
 				"IsDebuff"		"0"
 				"IsPurgable"		"0"
-				"IsHidden"		"1"
+				"IsHidden"		"0"
 
 				"ThinkInterval"		"0.1"
 				"Duration"		"99"
@@ -122,8 +139,8 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"ability_construct.lua"
-						"Function"	"OnIntervalThink"
+						"ScriptFile"	"scripts/vscripts/datadriven/ability_construct.lua"
+						"Function"	"OnIntervalThink_modifier_trollsandelves_construct_think"
 					}
 				}
 			}
@@ -142,13 +159,13 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile" "ability_construct.lua"
+				"ScriptFile" "scripts/vscripts/datadriven/ability_construct.lua"
 				"Function"	"OnSpellStart"
 				"Target"	"POINT"
 			}
 			"ApplyModifier"
 			{
-				"ModifierName"	"construct_building_think"
+				"ModifierName"	"modifier_trollsandelves_construct_think"
 				"Target"	"CASTER"
 			}
 		}
@@ -157,12 +174,12 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile" "ability_construct.lua"
+				"ScriptFile" "scripts/vscripts/datadriven/ability_construct.lua"
 				"Function"	"OnChannelInterrupted"
 			}
 			"RemoveModifier"
 			{
-				"ModifierName"		"construct_building_think"
+				"ModifierName"		"modifier_trollsandelves_construct_think"
 				"Target"			"UNIT"	
 			}
 
@@ -170,11 +187,11 @@
 
 		"Modifiers"
 		{
-			"construct_building_think"
+			"modifier_trollsandelves_construct_think"
 			{
 				"IsDebuff"		"0"
 				"IsPurgable"		"0"
-				"IsHidden"		"1"
+				"IsHidden"		"0"
 
 				"ThinkInterval"		"0.1"
 				"Duration"		"99"
@@ -183,8 +200,8 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"ability_construct.lua"
-						"Function"	"OnIntervalThink"
+						"ScriptFile"	"scripts/vscripts/datadriven/ability_construct.lua"
+						"Function"	"OnIntervalThink_modifier_trollsandelves_construct_think"
 					}
 				}
 			}
@@ -197,7 +214,7 @@
 
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM | DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_ALL | DOTA_UNIT_TARGET_TREE"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
 
 		"AbilityCastRange"				"250"
 
@@ -205,7 +222,7 @@
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"ability_tether_proxy.lua"
+				"ScriptFile"	"scripts/vscripts/datadriven/ability_tether_proxy.lua"
 				"Function"		"OnSpellStart"
 			}
 			"ApplyModifier"
@@ -231,8 +248,8 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"ability_tether_proxy.lua"
-						"Function"	"OnIntervalThink"
+						"ScriptFile"	"scripts/vscripts/datadriven/ability_tether_proxy.lua"
+						"Function"	"OnIntervalThink_modifier_trollsandelves_tether_leech"
 					}
 				}
 			}
@@ -254,7 +271,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0"
+		"AbilityCooldown"				"5"
 		"AbilityDuration"				"-1"
 
 		// Cost
