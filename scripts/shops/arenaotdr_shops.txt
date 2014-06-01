@@ -63,7 +63,18 @@
 	// Level 3 - Purple Recipes
 	"defense"
 	{
-
+		"item"					"item_trollsandelves_armor_1"
+		"item"					"item_trollsandelves_armor_2"
+		"item"					"item_trollsandelves_armor_3"
+		"item"					"item_trollsandelves_armor_4"
+		"item"					"item_trollsandelves_armor_5"
+		"item"					"item_trollsandelves_armor_6"
+		"item"					"item_trollsandelves_armor_7"
+		"item"					"item_trollsandelves_armor_8"
+		"item"					"item_trollsandelves_armor_9"
+		"item"					"item_trollsandelves_armor_10"
+		"item"					"item_trollsandelves_armor_11"
+		"item"					"item_trollsandelves_armor_12"
 	}
 
 	"weapons"
