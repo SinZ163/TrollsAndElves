@@ -607,6 +607,337 @@
 			}
 		}
 	}
+	"item_trollsandelves_health_1"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"BaseClass"				"item_vitality_booster"
+		"ID"					"700"
+		"AbilityTextureName"	"item_trollsandelves_health_1"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost" "100"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"					""
+		"ItemQuality"					"common"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_health" "250"
+			}
+		}
+	}
+	
+	"item_trollsandelves_health_2"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"BaseClass"				"item_vitality_booster"
+		"ID"					"701"
+		"AbilityTextureName"	"item_trollsandelves_health_2"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost" "200"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"					""
+		"ItemQuality"					"common"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_health" "500"
+			}
+		}
+	}
+	"item_trollsandelves_health_3"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"BaseClass"				"item_vitality_booster"
+		"ID"					"702"
+		"AbilityTextureName"	"item_trollsandelves_health_3"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost" "400"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"					""
+		"ItemQuality"					"common"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_health" "1000"
+			}
+		}
+	}
+	"item_trollsandelves_health_4"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"BaseClass"				"item_vitality_booster"
+		"ID"					"703"
+		"AbilityTextureName"	"item_trollsandelves_health_4"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost" "800"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"					""
+		"ItemQuality"					"common"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_health" "2000"
+			}
+		}
+	}
+	"item_trollsandelves_health_5"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"BaseClass"				"item_vitality_booster"
+		"ID"					"704"
+		"AbilityTextureName"	"item_trollsandelves_health_5"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost" "1600"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"					""
+		"ItemQuality"					"common"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_health" "4000"
+			}
+		}
+	}
+	"item_trollsandelves_health_6"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"BaseClass"				"item_vitality_booster"
+		"ID"					"705"
+		"AbilityTextureName"	"item_trollsandelves_health_6"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost" "3200"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"					""
+		"ItemQuality"					"common"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_health" "8000"
+			}
+		}
+	}
+	"item_trollsandelves_health_7"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"BaseClass"				"item_vitality_booster"
+		"ID"					"706"
+		"AbilityTextureName"	"item_trollsandelves_health_7"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost" "6400"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"					""
+		"ItemQuality"					"common"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_health" "16000"
+			}
+		}
+	}
+	"item_trollsandelves_health_8"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"BaseClass"				"item_vitality_booster"
+		"ID"					"707"
+		"AbilityTextureName"	"item_trollsandelves_health_8"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost" "12800"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"					""
+		"ItemQuality"					"common"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_health" "32000"
+			}
+		}
+	}
+	"item_trollsandelves_health_9"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"BaseClass"				"item_vitality_booster"
+		"ID"					"708"
+		"AbilityTextureName"	"item_trollsandelves_health_9"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost" "0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"					""
+		"ItemQuality"					"common"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_health" "160000"
+			}
+		}
+	}
+	"item_trollsandelves_health_10"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"BaseClass"				"item_vitality_booster"
+		"ID"					"709"
+		"AbilityTextureName"	"item_trollsandelves_health_10"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost" "0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"					""
+		"ItemQuality"					"common"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"2"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_health" "320000"
+			}
+		}
+	}
+	"item_trollsandelves_health_11"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"BaseClass"				"item_vitality_booster"
+		"ID"					"710"
+		"AbilityTextureName"	"item_trollsandelves_health_11"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost" "0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"					""
+		"ItemQuality"					"common"
+		"ItemShareability"				"ITEM_NOT_SHAREABLE"
+		"ItemSellable"					"0"
+		"ItemKillable"					"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"8"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_health" "399996"
+			}
+		}
+	}
 
 	"item_trollsandelves_damage_1"
 	{
