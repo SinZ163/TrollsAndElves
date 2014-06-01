@@ -2,18 +2,16 @@
 {
 	"consumables"
 	{
-		"item_placetree"	"1"
 	}
 
 	"attributes"
 	{
-		"item_troll_atk_1"	"1"
-		"item_troll_atk_2"	"1"
-		"item_troll_atk_3"	"1"
-		"item_troll_atk_4"	"1"
-		"item_troll_atk_5"	"1"
-		"item_troll_atk_6"	"1"
-		"item_lycan_paw" "1"
+		"trollsandelves_ats_1"	"1"
+		"trollsandelves_ats_2"	"1"
+		"trollsandelves_ats_3"	"1"
+		"trollsandelves_ats_4"	"1"
+		"trollsandelves_ats_5"	"1"
+		"trollsandelves_ats_6"	"1"
 	}
 
 	"weapons_armor"
