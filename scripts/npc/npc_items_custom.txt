@@ -609,7 +609,7 @@
 	}
 	"item_trollsandelves_health_1"
 	{
-		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"				"item_vitality_booster"
 		"ID"					"700"
 		"AbilityTextureName"	"item_trollsandelves_health_1"
@@ -640,7 +640,7 @@
 	
 	"item_trollsandelves_health_2"
 	{
-		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"				"item_vitality_booster"
 		"ID"					"701"
 		"AbilityTextureName"	"item_trollsandelves_health_2"
@@ -670,7 +670,7 @@
 	}
 	"item_trollsandelves_health_3"
 	{
-		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"				"item_vitality_booster"
 		"ID"					"702"
 		"AbilityTextureName"	"item_trollsandelves_health_3"
@@ -700,7 +700,7 @@
 	}
 	"item_trollsandelves_health_4"
 	{
-		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"				"item_vitality_booster"
 		"ID"					"703"
 		"AbilityTextureName"	"item_trollsandelves_health_4"
@@ -730,7 +730,7 @@
 	}
 	"item_trollsandelves_health_5"
 	{
-		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"				"item_vitality_booster"
 		"ID"					"704"
 		"AbilityTextureName"	"item_trollsandelves_health_5"
@@ -760,7 +760,7 @@
 	}
 	"item_trollsandelves_health_6"
 	{
-		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"				"item_vitality_booster"
 		"ID"					"705"
 		"AbilityTextureName"	"item_trollsandelves_health_6"
@@ -790,7 +790,7 @@
 	}
 	"item_trollsandelves_health_7"
 	{
-		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"				"item_vitality_booster"
 		"ID"					"706"
 		"AbilityTextureName"	"item_trollsandelves_health_7"
@@ -820,7 +820,7 @@
 	}
 	"item_trollsandelves_health_8"
 	{
-		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"				"item_vitality_booster"
 		"ID"					"707"
 		"AbilityTextureName"	"item_trollsandelves_health_8"
@@ -850,7 +850,7 @@
 	}
 	"item_trollsandelves_health_9"
 	{
-		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"				"item_vitality_booster"
 		"ID"					"708"
 		"AbilityTextureName"	"item_trollsandelves_health_9"
@@ -880,7 +880,7 @@
 	}
 	"item_trollsandelves_health_10"
 	{
-		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"				"item_vitality_booster"
 		"ID"					"709"
 		"AbilityTextureName"	"item_trollsandelves_health_10"
@@ -910,7 +910,7 @@
 	}
 	"item_trollsandelves_health_11"
 	{
-		"AbilityBehavior"		"DOTA_ABILITY_BEHVAIOR_PASSIVE"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"				"item_vitality_booster"
 		"ID"					"710"
 		"AbilityTextureName"	"item_trollsandelves_health_11"
