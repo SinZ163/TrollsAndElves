@@ -1310,4 +1310,375 @@
 			}
 		}
 	}
+	"item_trollsandelves_armor_1"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_chainmail"
+		"ID"			"800"
+		"AbilityTextureName"		"item_trollsandelves_armor_1"
+
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"100"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+		"ItemAliases"			"wooden shield"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"			"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_armor"		"1"
+			}
+		}
+	}
+
+	"item_trollsandelves_armor_2"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_chainmail"
+		"ID"			"801"
+		"AbilityTextureName"		"item_trollsandelves_armor_2"
+
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"200"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+		"ItemAliases"			"iron shield"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"			"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_armor"		"2"
+			}
+		}
+	}
+
+	"item_trollsandelves_armor_3"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_chainmail"
+		"ID"			"802"
+		"AbilityTextureName"		"item_trollsandelves_armor_3"
+
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"400"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+		"ItemAliases"			"steel shield"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"			"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_armor"		"4"
+			}
+		}
+	}
+
+	"item_trollsandelves_armor_4"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_chainmail"
+		"ID"			"803"
+		"AbilityTextureName"		"item_trollsandelves_armor_4"
+
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"800"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+		"ItemAliases"			"diamond shield"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"			"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_armor"		"8"
+			}
+		}
+	}
+
+	"item_trollsandelves_armor_5"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_chainmail"
+		"ID"			"804"
+		"AbilityTextureName"		"item_trollsandelves_armor_5"
+
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"1600"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+		"ItemAliases"			"platinum shield"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"			"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_armor"		"16"
+			}
+		}
+	}
+
+	"item_trollsandelves_armor_6"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_chainmail"
+		"ID"			"805"
+		"AbilityTextureName"		"item_trollsandelves_armor_6"
+
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"3200"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+		"ItemAliases"			"silver shield"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"			"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_armor"		"32"
+			}
+		}
+	}
+
+	"item_trollsandelves_armor_7"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_chainmail"
+		"ID"			"806"
+		"AbilityTextureName"		"item_trollsandelves_armor_7"
+
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"6400"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+		"ItemAliases"			"golden shield"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"			"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_armor"		"64"
+			}
+		}
+	}
+
+	"item_trollsandelves_armor_8"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_chainmail"
+		"ID"			"807"
+		"AbilityTextureName"		"item_trollsandelves_armor_8"
+
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"12800"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+		"ItemAliases"			"ionic shield"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"			"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_armor"		"128"
+			}
+		}
+	}
+
+	"item_trollsandelves_armor_9"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_chainmail"
+		"ID"			"808"
+		"AbilityTextureName"		"item_trollsandelves_armor_9"
+
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+		"ItemAliases"			"ultraionic shield"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"			"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_armor"		"640"
+			}
+		}
+	}
+
+	"item_trollsandelves_armor_10"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_chainmail"
+		"ID"			"809"
+		"AbilityTextureName"		"item_trollsandelves_armor_10"
+
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+		"ItemAliases"			"ultraionic shield ultra"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"			"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"2"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_armor"		"1280"
+			}
+		}
+	}
+
+	"item_trollsandelves_armor_11"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_chainmail"
+		"ID"			"810"
+		"AbilityTextureName"		"item_trollsandelves_armor_11"
+
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+		"ItemAliases"			"ultraionic shield ultimate"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"			"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"8"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_armor"		"5120"
+			}
+		}
+	}
+
+	"item_trollsandelves_armor_12"
+	{
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"			"item_chainmail"
+		"ID"			"811"
+		"AbilityTextureName"		"item_trollsandelves_armor_12"
+
+		//===========================================================
+		// *   Item Info
+		"ItemCost"			"0"
+		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"			""
+		"ItemQuality"			"common"
+		"ItemAliases"			"ultraionic shield end game"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"			"0"
+		//===========================================================
+		// *   Ability Info
+
+		"LumberCost"	"32"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"bonus_armor"		"20480"
+			}
+		}
+	}
 }
