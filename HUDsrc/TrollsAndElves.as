@@ -59,6 +59,8 @@
 		public function onLoaded() : void {
 			//trace('globals:');
 			//PrintTable(globals, 1);
+			trace("##TrollsAndElves Fixing healthbar");
+			globals.GameInterface.SetConvar("dota_health_per_vertical_marker", "25000");
 			
 			// constructor code
 			//trace("###TrollsAndElves killing inventory UI");
