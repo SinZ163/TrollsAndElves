@@ -5,6 +5,111 @@
 	//=================================================================================
 	//Trolls and Elves units below, by SinZ
 	//=================================================================================
+	
+
+	"npc_dota_creature_creep_melee"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+		"Model"						"models/props_structures/tower_good.mdl"	// Model.
+		"SoundSet"					"Creep_Bad_Melee"					// Name of sound set.
+		"ModelScale" 				".8"
+		"Level"						"1"
+		
+		// Abilities
+		//----------------------------------------------------------------
+		
+		"Ability1"					""			// Ability 1.
+		"Ability2"					""			// Ability 2.
+		"Ability3"					""			// Ability 3.
+		"Ability4"					""			// Ability 4.
+		"Ability5"					""			// Ability 5.
+		"Ability6"					""			// Ability 6 - Extra.
+		"Ability7"					""			// Ability 7 - Extra.
+		"Ability8"					""			// Ability 8 - Extra.
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"4"			// Physical protection.
+		"MagicalResistance"			"25"			// Magical protection.
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"110"		// Damage range min.
+		"AttackDamageMax"			"120"		// Damage range max.
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"1"			// Speed of attack.
+		"AttackAnimationPoint"		"0.467"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+		"AttackRange"				"100"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			""			// Speed of projectile.
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"0"			// Base strength
+		"AttributeStrengthGain"		"0"			// Strength bonus per level.
+		"AttributeBaseIntelligence"	"0"			// Base intelligence
+		"AttributeIntelligenceGain"	"0"			// Intelligence bonus per level.
+		"AttributeBaseAgility"		"0"			// Base agility
+		"AttributeAgilityGain"		"0"			// Agility bonus per level.
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"84"		// Experience earn.
+		"BountyGoldMin"				"38"		// Gold earned min.
+		"BountyGoldMax"				"72"		// Gold earned max.
+
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_REGULAR"			// Hull type used for navigation/locomotion.
+		"RingRadius"				"45"
+		"HealthBarOffset"			"130"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
+		"MovementSpeed"				"325"		// Speed
+		"MovementTurnRate"			"0.5"		// Turning rate.
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"750"		// Base health.
+		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+		"StatusMana"				"0"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_SOFT"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"850"		// Range of vision during day light.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+		
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{	
+			//Basic AI State
+			//-----------------------------------------------------------------
+			"AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef" "4774"
+				}
+			}
+		}
+	}
+
 	"npc_tree_dummy"
 	{
 		"BaseClass"		"npc_dota_creep"
@@ -98,27 +203,174 @@
 		"VoiceFile"					"scripts/voscripts/game_sounds_vo_wisp.txt"	
 	}
 
-	"npc_trollsandelves_building_rock_1"
+	"npc_trollsandelves_worker_1"
 	{
-		"BaseClass"					"npc_dota_fort"	// Class of entity of link to.
-		"Model"						"models\buildings\building_plain_reference.mdl"	// Model.
-		
-		"RingRadius"				"75"
-		// Stats
-		//----------------------------------------------------------------
-		"StatusHealth"				"50"	//Base Health
-		"StatusHealthRegen"			"0"		//Health regeneration rate.
+		"BaseClass"		"npc_dota_creature"
+
+		"ArmorPhysical"				"0"							
+
+		"StatusHealth"	"5"	
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"0"									// Damage range min.
+		"AttackDamageMax"			"0"									// Damage range max.
+		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackAnimationPoint"		"0.15"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
+
+		"MovementSpeed"				"295"									// Speed.
+		"MovementTurnRate"			"0.7"									// Turning rate.
+
+		"GoldCost"	"32"
+		"LumberCost" "0"
+		"Supply"	"1"
+		"Effect"	"6"
 	}
 
-	"trollsandelves_building_inprogress"
+	"npc_trollsandelves_worker_2"
 	{
-		"BaseClass"				"npc_dota_building"
-		"Model"					"models\buildings\building_racks_melee_reference.mdl"
+		"BaseClass"		"npc_dota_creature"
 
-		"RingRadius"				"200"
+		"ArmorPhysical"				"0"							
 
-		"StatusHealth"				"50"
-		"StatusHealthRegen"			"0"
+		"StatusHealth"	"5"	
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"0"									// Damage range min.
+		"AttackDamageMax"			"0"									// Damage range max.
+		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackAnimationPoint"		"0.15"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
+
+		"MovementSpeed"				"295"									// Speed.
+		"MovementTurnRate"			"0.7"									// Turning rate.
+
+		"GoldCost"	"128"
+		"LumberCost" "0"
+		"Supply"	"2"
+		"Effect"	"3"
+	}
+
+	"npc_trollsandelves_worker_3"
+	{
+		"BaseClass"		"npc_dota_creature"
+
+		"ArmorPhysical"				"0"							
+
+		"StatusHealth"	"5"	
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"0"									// Damage range min.
+		"AttackDamageMax"			"0"									// Damage range max.
+		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackAnimationPoint"		"0.15"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
+
+		"MovementSpeed"				"295"									// Speed.
+		"MovementTurnRate"			"0.7"									// Turning rate.
+
+		"GoldCost"	"512"
+		"LumberCost" "0"
+		"Supply"	"4"
+		"Effect"	"1.5"
+	}
+
+	"npc_trollsandelves_worker_4"
+	{
+		"BaseClass"		"npc_dota_creature"
+
+		"ArmorPhysical"				"0"							
+
+		"StatusHealth"	"5"	
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"0"									// Damage range min.
+		"AttackDamageMax"			"0"									// Damage range max.
+		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackAnimationPoint"		"0.15"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
+
+		"MovementSpeed"				"295"									// Speed.
+		"MovementTurnRate"			"0.7"									// Turning rate.
+
+		"GoldCost"	"2048"
+		"LumberCost" "0"
+		"Supply"	"6"
+		"Effect"	"0.75"
+	}
+
+	"npc_trollsandelves_worker_5"
+	{
+		"BaseClass"		"npc_dota_creature"
+
+		"ArmorPhysical"				"0"		
+
+		"StatusHealth"	"5"						
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"0"									// Damage range min.
+		"AttackDamageMax"			"0"									// Damage range max.
+		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackAnimationPoint"		"0.15"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"									// Range within a target can be acquired.
+
+		"MovementSpeed"				"295"									// Speed.
+		"MovementTurnRate"			"0.7"									// Turning rate.
+
+		"GoldCost"	"8192"
+		"LumberCost" "0"
+		"Supply"	"10"
+		"Effect"	"0.38"
+	}
+
+	"npc_trollsandelves_defense_tank"
+	{
+		"BaseClass"		"npc_dota_creature"
+
+		"ArmorPhysical"				"2"
+
+		"StatusHealth"	"256"							
+
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"128"									// Damage range min.
+		"AttackDamageMax"			"128"									// Damage range max.
+		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackAnimationPoint"		"0.15"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"1000"									// Range within a target can be acquired.
+
+		"ProjectileModel"			"wisp_base_attack"					// Particle system model for projectile.
+		"ProjectileSpeed"			"1200"									// Speed of projectile.
+
+		"MovementSpeed"				"295"									// Speed.
+		"MovementTurnRate"			"0.7"									// Turning rate.
+
+		"LumberCost"	"256"
+	}
+
+	"npc_trollsandelves_observating_helicopter"
+	{
+		"BaseClass"		"npc_dota_creature"
+
+		"ArmorPhysical"				"0"
+
+		"StatusHealth"	"5"							
+
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+		
+		"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"			"0"									// Damage range min.
+		"AttackDamageMax"			"0"									// Damage range max.
+		"AttackRate"				"1.7"									// Speed of attack.
+		"AttackAnimationPoint"		"0.15"									// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"1000"									// Range within a target can be acquired.
+
+		"ProjectileModel"			"wisp_base_attack"					// Particle system model for projectile.
+		"ProjectileSpeed"			"1200"									// Speed of projectile.
+
+		"MovementSpeed"				"400"									// Speed.
+		"MovementTurnRate"			"0.7"									// Turning rate.
+
+		"LumberCost"	"128"
 	}
 
 	"npc_trollsandelves_building_hall_1"
@@ -404,7 +656,7 @@
 		"Model"	"models\buildings\building_racks_melee_reference.mdl"
 
 		"BuildingType"	"Rock"
-		"Requisite"	"None"
+		"Requisite"	"npc_trollsandelves_hall_1"
 		"GoldCost" "128"
 		"LumberCost" "0"
 		"NextUpgrade" "npc_trollsandelves_rock_7"

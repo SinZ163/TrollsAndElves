@@ -10,8 +10,14 @@ end
 function ConstructDef:OnSpellStart(chest)
 	local builder = chest.caster 
 
-	local buildingent = CreateUnitByName("trollsandelves_building_inprogress", chest.target_points[1], false, nil, nil, builder.Ent:GetTeamNumber())
+	local intent = MData:For("PlayerIntent", builder.Ent:GetPlayerOwner())
+	local buildingent = CreateUnitByName(intent.WantsToBuild, chest.target_points[1], false, nil, nil, builder.Ent:GetTeamNumber())
 	local building = MData:For("Building", buildingent)
+	building.Type = intent.WantsToBuild
+	building.PlayerOwner = builder.Ent:GetPlayerOwner()
+	buildingent:ModifyHealth(1, nil, true, 0)
+
+	print("Building " .. intent.WantsToBuild)
 
 	builder.MostRecent = building
 	builder.Buildings[buildingent] = building
@@ -35,18 +41,29 @@ end
 function ConstructDef:OnChannelInterrupted(chest)
 	local unit = chest.caster
 	FireGameEvent("trollsandelves_stopped_building", {pid = unit.Ent:GetPlayerOwner():GetPlayerID()})
+	unit.Ent:RemoveModifierByName("modifier_trollsandelves_construct_think")
 end
 
 function ConstructDef:OnIntervalThink_modifier_trollsandelves_construct_think(chest)
 	local builder = chest.caster
+	local playerowner = builder.Ent:GetPlayerOwner()
 	local building = builder.MostRecent
+	local maxhealth = building.Ent:GetMaxHealth()
+	local pct = builder.HealthPercentPerTick * maxhealth
+	print(pct)
 
-	building.TimeSpent = building.TimeSpent + 0.1
+	building.Ent:Heal(pct, nil)
 
-	if building.TimeSpent >= building.Time then 
+	if building.Ent:GetHealthDeficit() == 0 then 
 		chest.ability:EndChannel(false) 
-		CreateUnitByName( "npc_trollsandelves_building_hall_1", building.Ent:GetOrigin(), false, nil, nil, builder.Ent:GetTeamNumber() )
-		UTIL_RemoveImmediate(building.Ent)
+
+		if building.Finished == false then 
+			building.Finished = true
+			building.Ent:SetControllableByPlayer(playerowner:GetPlayerID(), true)
+		end
+		FireGameEvent("trollsandelves_stopped_building", {pid = playerowner:GetPlayerID()})
+		print(building.Type)
+		TrollsAndElvesGameMode:TechAdvance(playerowner, building.Type)
 		builder.Ent:RemoveModifierByName("modifier_trollsandelves_construct_think") --EndChannel doesn't call the datadriven OnChannelInterrupted, so the RemoveModifier out there doesn't call
 	end
 end

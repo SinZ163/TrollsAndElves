@@ -147,6 +147,22 @@
 		}
 	}
 
+	"trollsandelves_build_menu"
+	{
+		"Baseclass"	"ability_datadriven"
+
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/datadriven/build_menu.lua"
+				"Function"	"OnSpellStart"
+			}
+		}
+	}
+
 	"trollsandelves_construct_building"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -346,8 +362,8 @@
 	{
 		// General
 		// ------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_ITEM"
-		"BaseClass"                                             "item_place_building_free"
+		"AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"                                             "ability_datadriven"
 		"ID" "2003"
 		"AbilityName" "item_placebuilding"
 	    
@@ -362,6 +378,15 @@
 		"BuildingName"                                  "npc_dota_badguys_tower1_mid"
 		"PreventBlocking"                               "1"
 	   
+	    "OnSpellStart"
+	    {
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"scripts/vscripts/datadriven/build_rock.lua"
+	    		"Function"	"OnSpellStart"
+	    	}
+	    }
+
 		"AbilitySpecial"
 		{
 				"01"

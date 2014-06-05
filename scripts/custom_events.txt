@@ -35,5 +35,17 @@
 	{
 		"pid"			"byte"	
 	}
+	"tae_new_troll"
+	{
+		"pid"	"byte"
+	}
+	"tae_new_elf"
+	{
+		"pid"	"byte"
+	}
+	"tae_build_menu"
+	{
+		"pid"	"byte"
+	}
 }
 

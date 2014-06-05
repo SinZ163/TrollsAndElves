@@ -7,10 +7,11 @@
 	{
 		"override_hero"			"npc_dota_hero_invoker"
 		"ModelScale"			"0.6"
-		"Ability1"			"trollsandelves_build_rock"
-		//"Ability2"			"trollsandelves_wisp_harvest"
-		"Ability2"			"trollsandelves_construct_building"
-		"Ability3"			"trollsandelves_resume_building"
+		"Ability1"			"trollsandelves_construct_building"
+		"Ability2"			"trollsandelves_resume_building"
+		"Ability3"			"trollsandelves_build_menu"
+
+		
 	}
 	"npc_dota_hero_trollsandelves_troll"
 	{

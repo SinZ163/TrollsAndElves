@@ -45,6 +45,10 @@ else
     print(totalErrors..' TrollsAndElves modules failed to load!\n')
 end
 
+Convars:RegisterCommand("quell2", function(args)
+    local h = Convars:GetCommandClient():GetAssignedHero()
+        CreateUnitByName("npc_dota_creature_creep_melee", h:GetOrigin(), true, nil, nil, 3)
+        end, "Fuck", 0)
 
 Convars:RegisterCommand("quell", function(args)
     local h = Convars:GetCommandClient():GetAssignedHero()
@@ -57,6 +61,16 @@ Convars:RegisterCommand("nametest2", function(args)
         print(h:GetUnitName())
         end, "Fuck", 0)
 
+Convars:RegisterCommand("showitemtest", function(args)
+    print("FIRING")
+    FireGameEvent("tae_new_troll", {pid=Convars:GetCommandClient():GetPlayerID()})
+        end, "Fuck", 0)
+
+Convars:RegisterCommand("showbuildtest", function(args)
+    print("FIRING")
+    FireGameEvent("tae_new_elf", {pid=Convars:GetCommandClient():GetPlayerID()})
+        end, "Fuck", 0)
+
 Convars:RegisterCommand("invo2", function(args)
     local h = Convars:GetCommandClient():GetAssignedHero()
         local firework = CreateHeroForPlayer( "npc_dota_hero_wisp", Convars:GetCommandClient())
@@ -67,6 +81,13 @@ Convars:RegisterCommand("invo3", function(args)
     local h = Convars:GetCommandClient():GetAssignedHero()
         local firework = CreateHeroForPlayer( "npc_dota_hero_invoker", Convars:GetCommandClient())
         FindClearSpaceForUnit(firework, h, false)
+        end, "Fuck", 0)
+
+Convars:RegisterCommand("tae_buy_item", function(cmdname, item)
+    local player = Convars:GetCommandClient()
+    if player:GetAssignedHero():GetClassname() == "npc_dota_hero_troll_warlord" then 
+        TrollsAndElvesGameMode:TrollBuyItem(player, item)
+    end
         end, "Fuck", 0)
 
 UnitsCustomKV = LoadKeyValues("scripts/npc/npc_units_custom.txt")

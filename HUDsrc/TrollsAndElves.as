@@ -6,11 +6,18 @@
     import ValveLib.Globals;
     import ValveLib.ResizeManager;
     import scaleform.clik.events.ButtonEvent;
+    import scaleform.clik.events.*;
+     import flash.events.MouseEvent;
+
+    import flash.geom.ColorTransform;
 
     // Timer
     import flash.utils.Timer;
     import flash.events.TimerEvent;
+    import flash.display.Shape;
+    import flash.geom.Point;
 
+    import ValveLib.Controls.VideoController;
     // For chrome browser
     import flash.utils.getDefinitionByName;
 	
@@ -22,6 +29,27 @@
 		
 		// These vars determain how much of the stage we can use
         // They are updated as the stage size changes
+
+        private static var X_SECTIONS = 1;      // How many sections in the x direction
+        private static var Y_SECTIONS = 1;      // How many sections in the y direction
+
+        private static var X_PER_SECTION = 1;   // How many skill lists in each x section
+        private static var Y_PER_SECTION = 1;   // How many skill lists in each y section
+
+        // How big a SelectSkillList is
+        private static var SL_WIDTH = 43;
+        private static var SL_HEIGHT = 43;
+
+        private var ITEM_WIDTH = 100;
+        private var ITEM_PADDING = 4;
+        private var ITEM_HEIGHT = 80;
+        private var ROW_SIZE = 1100;
+        private var COLUMN_SIZE = 300; 
+
+        // How much padding to put between each list
+        private static var S_PADDING = 2;
+
+
         public var res16by9Width:Number = 1920;
         public var res16by9Height:Number = 1080;
 		
@@ -39,14 +67,31 @@
 		//Default to 16by9 as that is the master resolution
 		public var maxStageWidth:Number = res16by9Width;
 		public var maxStageHeight:Number = res16by9Height;
-		
+
+		public var scalingFactor;
+
+		public var realScreenWidth;
+
+		public var realScreenHeight;
+
+		public var myStageHeight = 720;
+
+		public var itemButton:MovieClip = new MovieClip();
+		public var buildingButton:MovieClip = new MovieClip();
+
+		public var itemPanel:MovieClip = new MovieClip();
+		public var buildingPanel:MovieClip = new MovieClip();
+
+		private var itemsCustomKV;
+		private var resourceCustomKV;
+
 		//Load in our other scripts here
 		public var lumberOverlay:LumberOverlay;
 		
 		public function TrollsAndElves() {
 			// constructor code
 			// Note this DOES run for some reason.
-			trace("##TrollsAndElves Hello World from the Constructor.");
+			trace("##TrollsAndElves Hello World from the Constructor. 2222");
 		}
 		
 		public function lumberEvent(args:Object) : void {
@@ -55,7 +100,138 @@
 				lumberOverlay.setLumber(args.lumber);
 			}
 		}
+		
+		//build a panel filled with KV-generated icons with tooltips and shit
+		private function buildResourcePanel(panelName:String, resource:String, onResourceClick:Function) {
+            var i:Number, j:Number, k:Number, l:Number, sl:MovieClip;
 
+			trace("Entering..");
+			
+            // How much space we have to use
+            var workingWidth:Number = myStageHeight*4/3;
+
+            // Build a container
+            this[panelName] = new MovieClip();
+			var container = this[panelName];
+            addChild(container);
+            container.visible = false;
+			trace("Assigned panel");
+
+			//maybe should be able to specify these per-case
+            var entryWidth:Number = ITEM_WIDTH + ITEM_PADDING;
+            var totalWidth:Number = ROW_SIZE;
+            var entryHeight:Number = ITEM_HEIGHT + ITEM_PADDING;
+            var totalHeight:Number = COLUMN_SIZE;
+            var useableHeight:Number = 320;
+            var entriesAcross = totalWidth / entryWidth;
+            var entriesDown = totalHeight / entryHeight;
+
+			//generically approved
+            var cls = getDefinitionByName("DB4_outerpanel");
+			var panel = new cls();
+			panel.visible = true;
+			panel.x = -15;
+			panel.y = -15;
+			panel.height = totalHeight + 100;
+			panel.width = totalWidth + 100;
+			container.addChild(panel);
+			trace("Assigned outerpanel");
+			
+
+			//generically approved
+			var closecls = getDefinitionByName("button_big");
+			var closebutton = new closecls();
+			closebutton.text = "Close";
+			closebutton.visible = true;
+			closebutton.x = 50;
+			closebutton.y = totalHeight + 50;
+			closebutton.addEventListener(MouseEvent.CLICK, onPanelClose);
+			container.addChild(closebutton);
+			trace("Assigned close");
+			
+			var kv = resourceCustomKV[resource]
+			trace(kv);
+			
+            var itemnum = 0;
+            for(var down = 0; down < entriesDown; down++){
+            	for(var across = 0; across < entriesAcross; across++){
+            		
+            		var resourcedata = kv[itemnum];
+					trace(resourcedata);
+            		if(resourcedata){
+            			var offset = entryWidth * across;
+	            		var item = new MovieClip();
+	            		item.x = offset;
+	            		item.y = down * entryHeight;
+	            		var img = new ResourceIcon(resourcedata, onResourceClick);
+						trace("Instanced icon");
+
+	            		img.addEventListener(MouseEvent.ROLL_OVER, onMouseRollOver, false, 0, true);
+	        			img.addEventListener(MouseEvent.ROLL_OUT, onMouseRollOut, false, 0, true);
+						img.itemName = resourcedata;
+						img.resourceName = resourcedata;
+	      			    Globals.instance.LoadAbilityImage(resourcedata, img);
+						trace("loaded image");
+	       	
+	            		item.itemName = resourcedata;
+	            		item.addChild(img);
+						
+						trace("Well?");
+	            		
+	            		container.addChild(item);
+	            		itemnum++;
+            		}
+            	}
+            }
+        }
+
+		public function onItemClick(item:String){
+			trace("AS " + item);
+			gameAPI.SendServerCommand("tae_buy_item " + item);
+		}
+		
+		public function onBuildingClick(building:String){
+			trace("Building " + building);
+			gameAPI.SendServerCommand("tae_wants_to_build " + building);
+		}
+		
+        public function onPanelClose(obj:Object){
+        	obj.target.parent.visible = false;
+        }
+
+        public function onMouseClickItem(keys:MouseEvent){
+        	trace("click");
+       		var s:Object = keys.target;
+
+       		trace("Bought " + s.itemName);
+
+        }
+
+       	public function onMouseRollOver(keys:MouseEvent){
+       		
+       		var s:Object = keys.target;
+       		trace("roll over! " + s.itemName);
+
+            // Workout where to put it
+            var lp:Point = s.localToGlobal(new Point(0, 0));
+
+            // Decide how to show the info
+            if(lp.x < realScreenWidth/2) {
+                // Workout how much to move it
+                var offset:Number = 16*scalingFactor;
+
+                // Face to the right
+                globals.Loader_rad_mode_panel.gameAPI.OnShowAbilityTooltip(lp.x+offset, lp.y, s.getResourceName());
+            } else {
+                // Face to the left
+                globals.Loader_heroselection.gameAPI.OnSkillRollOver(lp.x, lp.y, s.getResourceName());
+            }
+       	}
+
+       	public function onMouseRollOut(keys:Object){
+       		 globals.Loader_heroselection.gameAPI.OnSkillRollOut();
+       	}
+		
 		public function onLoaded() : void {
 			//trace('globals:');
 			//PrintTable(globals, 1);
@@ -67,19 +243,118 @@
 			trace("##TrollsAndElves Starting TrollsAndElves HUD");
 			visible = true;
 			
+			globals.scaleX = 0.5;
+			globals.scaleY = 0.5;
+			
+			trace("Loading kv..");
+			resourceCustomKV = Globals.instance.GameInterface.LoadKVFile('scripts/kv/tae_resources.txt').abs;
+			
+            buildResourcePanel("itemPanel", "troll_shop", onItemClick);
+			buildResourcePanel("buildingPanel", "elf_buildings", onBuildingClick);
+
 			lumberOverlay = new LumberOverlay();
 			addChild(lumberOverlay);
 			lumberOverlay.visible = true;
 			lumberOverlay.setLumber("1000"); //TEMP just to test if it looks nice
 			gameAPI.SubscribeToGameEvent("trollsandelves_lumber", this.lumberEvent);
+			gameAPI.SubscribeToGameEvent("tae_new_troll", this.newTroll);
+			gameAPI.SubscribeToGameEvent("tae_new_elf", this.newElf);
+			gameAPI.SubscribeToGameEvent("tae_build_menu", this.buildMenuToggle);
 			//Resizing is blitz
 			Globals.instance.resizeManager.AddListener(this);
-			
-			//globals.Loader_inventory.movieClip.inventory.quickbuy = null;
+		}
+
+		public function buildMenuToggle(keys:Object){
+			if (globals.Players.GetLocalPlayer() == keys.pid)
+			{
+				buildingPanel.visible = !buildingPanel.visible;
+			}
 		}
 		
+		public function newTroll(keys:Object){
+			trace("NEW TROLL");
+			if (globals.Players.GetLocalPlayer() == keys.pid)
+			{
+				trace("GOT IT WHERE WE WANT IT");
+				buildingButton.visible = false;
+				drawItemsButton();
+			}
+		}
+
+		public function newElf(keys:Object){
+			trace("NEW ELF");
+			if (globals.Players.GetLocalPlayer() == keys.pid)
+			{
+				trace("GOT IT WHERE WE WANT IT");
+				itemButton.visible = false;
+				
+
+				drawBuildingsButton();
+			}
+		}
+
+		public function drawItemsButton(){
+			var cls = getDefinitionByName("button_big");
+			var btn = new cls();
+			btn.x = 400;
+			btn.y = 400;
+			btn.visible = true;
+			btn.addEventListener(ButtonEvent.CLICK, itemsClicked);
+			itemButton.addChild(btn);
+			itemButton.visible = true;
+			addChild(itemButton);
+		}
+
+		public function drawBuildingsButton(){
+			var cls = getDefinitionByName("button_big");
+			var btn = new cls();
+			btn.x = 400;
+			btn.y = 400;
+			btn.visible = true;
+			btn.addEventListener(ButtonEvent.CLICK, buildingsClicked);
+			buildingButton.addChild(btn);
+			buildingButton.visible = true;
+			addChild(buildingButton);
+		}
+
+		public function itemsClicked(obj:Object){
+			itemPanel.visible = true;
+		}
+
+		public function buildingsClicked(obj:Object){
+			buildingPanel.visible = true;
+		}
+
+		public function fireAbility(idx:int){
+			//get movieclip and fake mouseevent
+			var clip = globals.Loader_actionpanel.movieClip.middle.abilities["Ability" + idx];
+			globals.Loader_actionpanel.movieclip.onAbilityClicked({"currentTarget":clip,"buttonIdx":idx});
+		}
+
 		public function onResize(re:ResizeManager) : * {
 			// Update the stage width
+
+			x = 0;
+			y = 0;
+
+			visible = true;
+
+			scalingFactor = re.ScreenHeight/myStageHeight;
+
+			this.scaleX = scalingFactor;
+			this.scaleY = scalingFactor;
+
+			realScreenWidth = re.ScreenWidth;
+			realScreenHeight = re.ScreenHeight;
+
+			var workingWidth:Number = myStageHeight*4/3;
+
+			itemPanel.x = (realScreenWidth/scalingFactor-workingWidth)/2;
+			itemPanel.y = 128;
+
+			buildingPanel.x = (realScreenWidth/scalingFactor-workingWidth)/2;
+			buildingPanel.y = 128;
+
 			trace("### Resizing");
 			if (re.IsWidescreen()) {
 				trace("### Widescreen detected!");
