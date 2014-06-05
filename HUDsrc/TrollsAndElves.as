@@ -231,10 +231,28 @@
        	public function onMouseRollOut(keys:Object){
        		 globals.Loader_heroselection.gameAPI.OnSkillRollOut();
        	}
+
+		public function unitEvent(args:Object) : void {
+			trace("###UNIT EVENT###");
+			var delayTimer:Timer = new Timer(1000, 1);
+            delayTimer.addEventListener(TimerEvent.TIMER, delayedUnit);
+            delayTimer.start();
+		}
+		public function heroEvent(args:Object) : void {
+			trace("###HERO EVENT###");
+			var delayTimer:Timer = new Timer(1000, 1);
+            delayTimer.addEventListener(TimerEvent.TIMER, delayedUnit);
+            delayTimer.start();
+		}
+		public function delayedUnit(e:TimerEvent) {
+			 trace(globals.Loader_actionpanel.movieClip.middle.unitName.text);
+		}
 		
 		public function onLoaded() : void {
 			//trace('globals:');
 			//PrintTable(globals, 1);
+			trace("##TrollsAndElves Fixing healthbar");
+			globals.GameInterface.SetConvar("dota_health_per_vertical_marker", "25000");
 			
 			// constructor code
 			//trace("###TrollsAndElves killing inventory UI");
@@ -257,9 +275,14 @@
 			lumberOverlay.visible = true;
 			lumberOverlay.setLumber("1000"); //TEMP just to test if it looks nice
 			gameAPI.SubscribeToGameEvent("trollsandelves_lumber", this.lumberEvent);
+
 			gameAPI.SubscribeToGameEvent("tae_new_troll", this.newTroll);
 			gameAPI.SubscribeToGameEvent("tae_new_elf", this.newElf);
 			gameAPI.SubscribeToGameEvent("tae_build_menu", this.buildMenuToggle);
+
+			gameAPI.SubscribeToGameEvent("dota_player_update_selected_unit", this.heroEvent);
+			gameAPI.SubscribeToGameEvent("dota_player_update_query_unit", this.unitEvent);
+
 			//Resizing is blitz
 			Globals.instance.resizeManager.AddListener(this);
 		}
