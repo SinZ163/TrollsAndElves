@@ -17,7 +17,6 @@
     import flash.display.Shape;
     import flash.geom.Point;
 
-    import ValveLib.Controls.VideoController;
     // For chrome browser
     import flash.utils.getDefinitionByName;
 	
