@@ -141,7 +141,7 @@ function TrollsAndElvesGameMode.BuildingQueueUnit(cmdname, building, unit)
 	end
 end
 
-function TrollsAndElves.UnitSelected(keys)
+function TrollsAndElvesGameMode.UnitSelected(keys)
 	
 end
 

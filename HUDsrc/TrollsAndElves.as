@@ -140,7 +140,7 @@
 			//generically approved
 			var closecls = getDefinitionByName("button_big");
 			var closebutton = new closecls();
-			closebutton.text = "Close";
+			closebutton.label = "Close";
 			closebutton.visible = true;
 			closebutton.x = 50;
 			closebutton.y = totalHeight + 50;
@@ -294,7 +294,7 @@
 		}
 		
 		public function newTroll(keys:Object){
-			trace("NEW TROLL");
+			trace("###NEW TROLL###");
 			if (globals.Players.GetLocalPlayer() == keys.pid)
 			{
 				trace("GOT IT WHERE WE WANT IT");
@@ -304,7 +304,7 @@
 		}
 
 		public function newElf(keys:Object){
-			trace("NEW ELF");
+			trace("###NEW ELF###");
 			if (globals.Players.GetLocalPlayer() == keys.pid)
 			{
 				trace("GOT IT WHERE WE WANT IT");

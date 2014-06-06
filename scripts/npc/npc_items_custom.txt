@@ -97,7 +97,7 @@
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"			"item_hyperstone"
 		"ID"				"600"
-		"AbilityTextureName"		"item_troll_ats_1"
+		"AbilityTextureName"		"troll_ats_1"
 		
 		//===========================================================
 		// *   Item Info
