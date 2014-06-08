@@ -1653,9 +1653,9 @@
 
 	"item_trollsandelves_armor_12"
 	{
-		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"			"item_chainmail"
-		"ID"			"811"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"					"item_chainmail"
+		"ID"						"811"
 		"AbilityTextureName"		"item_trollsandelves_armor_12"
 
 		//===========================================================
@@ -1678,6 +1678,261 @@
 			{
 				"var_type"		"FIELD_INTEGER"
 				"bonus_armor"		"20480"
+			}
+		}
+	}
+	
+	"item_trollsandelves_elf_invul"
+	{
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING | DOTA_UNIT_TARGET_MECHANICAL"	
+		"BaseClass"					"item_datadriven"
+		"ID"						"812"
+		"AbilityTextureName"		"item_trollsandelves_elf_invul"
+		"AbilityCooldown"			"300"
+		"precache"
+		{
+			"particlefile"			"particles/units/heroes/hero_omniknight.pcf"
+			"soundfile"				"scripts/game_sounds_heroes/game_sounds_omniknight.txt"
+		}
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost"					"0"
+		"ItemDisassembleRule"		"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"				""
+		"ItemQuality"				"common"
+		"ItemAliases"				"Shield of Gods"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"				"0"
+		
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"			"TARGET"
+				"EffectName"		"Hero_Omniknight.GuardianAngel.Cast"
+			}
+			"ApplyModifier"
+			{
+				"Target"			"TARGET"
+				"ModifierName"		"modifier_trollsandelves_elf_invul"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_trollsandelves_elf_invul"
+			{
+				"Duration"			"10"
+				"EffectName"		"omniknight_guardian_angel_ally"
+				"EffectAttachType"	"follow_origin"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_AVOID_CONSTANT"				"100"
+				}
+			}
+		}
+	}
+
+	"item_trollsandelves_elf_blink"
+	{
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"BaseClass"							"item_blink"
+		"ID"								"813"
+		"AbilityCastRange"					"0"
+		"AbilityCastPoint"					"0.0"
+		"AbilityCooldown"					"25"
+		"AbilityManaCost"					"0"
+		"AbilityTextureName"				"item_trollsandelves_elf_blink"
+		
+		//===========================================================
+		// *   Item Info
+		"ItemCost"					"0"
+		"ItemDisassembleRule"		"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"				""
+		"ItemQuality"				"common"
+		"ItemAliases"				"Blink"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"				"0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_range"			"1250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_damage_cooldown"	"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_range_clamp"		"1250"
+			}
+		}
+	}
+	
+	"item_trollsandelves_elf_root"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"						"item_datadriven"
+		"ID"							"814"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"			"item_trollsandelves_elf_root"
+		"precache"
+		{
+			"particlefile"			"particles/units/heroes/hero_lone_druid.pcf"
+			"soundfile"				"scripts/game_sounds_heroes/game_sounds_treant.txt"
+		}
+		
+		//Stats
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.0"
+		"AbilityManaCost"				"75"
+		"AbilityCooldown"				"35"
+		
+		"ItemCost"					"0"
+		"ItemDisassembleRule"		"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"				""
+		"ItemQuality"				"common"
+		"ItemAliases"				"Root"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"				"0"
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"			"TARGET"
+				"EffectName"		"Hero_Treant.Overgrowth.Cast"
+			}
+			"ApplyModifier"
+			{
+				"Target"			"TARGET"
+				"ModifierName"		"modifier_trollsandelves_elf_root"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_trollsandelves_elf_root"
+			{
+				"Duration"			"4"
+				"EffectName"		"lone_druid_bear_entangle_body"
+				"EffectAttachType"	"follow_origin"
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	"item_trollsandelves_elf_silence"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"						"item_orchid"
+		"ID"							"815"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName"			"item_trollsandelves_elf_silence"
+		
+		//Stats
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.0"
+		"AbilityManaCost"				"75"
+		"AbilityCooldown"				"30"
+		
+		"ItemCost"					"0"
+		"ItemDisassembleRule"		"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"				""
+		"ItemQuality"				"common"
+		"ItemAliases"				"Silence"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"				"0"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_speed"	"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"silence_duration"		"5"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"silence_damage_percent"	"0"
+			}
+		}
+	}
+	"item_trollsandelves_elf_place_ward"
+	{
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"					"item_datadriven"
+		"ID"						"816"
+		"AbilityTextureName"		"item_trollsandelves_elf_place_ward"
+		
+		//Stats
+		"AbilityCastRange"				"500"
+		"AbilityCastPoint"				"0.0"
+		"AbilityManaCost"				"100"
+		"AbilityCooldown"				"0"
+		
+		"ItemCost"					"0"
+		"ItemDisassembleRule"		"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"				""
+		"ItemQuality"				"common"
+		"ItemAliases"				"Observer Ward"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"				"0"
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"			"POINT"
+				"EffectName"		"DOTA_Item.ObserverWard.Activate"
+			}
+			"SpawnUnit"
+			{
+				"UnitName"			"npc_trollsandelves_elf_ward"
+				"Target"			"POINT"
+				"Duration"			"200"
+				"UnitCount"			"1"
+				"OnSpawn"
+				{
+					"ApplyModifier"
+					{
+						"Target"		"TARGET"
+						"ModifierName"	"modifier_riki_permanent_invisibility"
+					}
+				}
 			}
 		}
 	}

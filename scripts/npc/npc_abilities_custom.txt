@@ -495,4 +495,33 @@
 	//		}
 	//	}
 	//}
+	"trollsandelves_elf_make_night"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ID"							"2004"
+		"AbilityTextureName"			"item_trollsandelves_elf_elf_make_night"
+		"BaseClass"						"night_stalker_darkness"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"						"1"
+		"RequiredLevel"					"1"
+		
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"70"
+		"AbilityManaCost"				"100"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blind_percentage"		"0"
+			}
+		}
+	}
+	
 }
