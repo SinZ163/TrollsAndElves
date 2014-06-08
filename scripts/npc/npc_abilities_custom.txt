@@ -417,8 +417,7 @@
 	}
 	"trollsandelves_troll_invis"
 	{
-		//"BaseClass"					"clinkz_wind_walk"
-		"BaseClass"					"ability_datadriven"
+		"BaseClass"					"clinkz_wind_walk"
 		"MaxLevel"					"1"
 		
 		//Apparently we need to do this for icons
@@ -429,17 +428,7 @@
 		
 		"AbilityCooldown"			"30.0"
 		"AbilityManaCost"			"0"
-		"OnSpellStart"
-		{
-			"Damage"
-			{
-				"Target" "CASTER"
-				"Type"	"DAMAGE_TYPE_PHYSICAL"
-				"Damage"	"100"
-				"MinDamage"		"100"
-				"MaxDamage"		"100"
-			}
-		}
+
 		"AbilitySpecial"
 		{
 			"01"
