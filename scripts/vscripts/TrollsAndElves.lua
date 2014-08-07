@@ -26,7 +26,7 @@ function TrollsAndElvesGameMode:InitGameMode()
 
 	Msg("Hello World, My name is TrollsAndElves!")
 	
-	CEntities:FindByClassname(nil, "dota_base_game_mode"):SetFogOfWarDisabled(true)
+	--CEntities:FindByClassname(nil, "dota_base_game_mode"):SetFogOfWarDisabled(true)
 	
     --Event registration --
 	ListenToGameEvent('player_chat', Dynamic_Wrap(TrollsAndElvesGameMode,"onChatMessage"), self)
