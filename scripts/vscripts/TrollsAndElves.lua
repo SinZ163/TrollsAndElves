@@ -26,18 +26,28 @@ function TrollsAndElvesGameMode:InitGameMode()
 
 	Msg("Hello World, My name is TrollsAndElves!")
 	
-	Entities:FindByClassname(nil, "dota_base_game_mode"):SetFogOfWarDisabled(true)
-	--Event registration --
-	ListenToGameEvent('entity_hurt', Dynamic_Wrap(TrollsAndElvesGameMode,"onEntityHurt"), self)
+	CEntities:FindByClassname(nil, "dota_base_game_mode"):SetFogOfWarDisabled(true)
+	
+    --Event registration --
 	ListenToGameEvent('player_chat', Dynamic_Wrap(TrollsAndElvesGameMode,"onChatMessage"), self)
 	ListenToGameEvent('player_connect_full', Dynamic_Wrap(TrollsAndElvesGameMode,"onPlayerConnect"), self)
 	ListenToGameEvent("dota_item_purchased", Dynamic_Wrap(TrollsAndElvesGameMode, "OnItemPurchased"), self)
+    
+    ListenToGameEvent('npc_spawned', Dynamic_Wrap(TrollsAndElvesGameMode, "onNPCSpawned"), self)
 	-- Start thinkers
     --self._scriptBind:BeginThink('TrollsAndElvesThink', Dynamic_Wrap(TrollsAndElvesGameMode, 'Think'), 0.1)
 end
 
-function TrollsAndElvesGameMode:onEntityHurt(keys)
-
+function TrollsAndElvesGameMode:onNPCSpawned(keys)
+    local spawnedUnit = EntIndexToHScript(self.entindex)
+    if spawnedUnit:GetClassname() == "npc_dota_hero_troll_warlord" or spawnedUnit:GetClassname() == "npc_dota_hero_lycan" then
+        print("Troll detected!")
+        local ability_1 = spawnedUnit:FindAbilityByName("trollsandelves_troll_invis")
+        local ability_2 = spawnedUnit:FindAbilityByName("trollsandelves_troll_pillage")
+        
+        ability_1:SetLevel(1)
+        ability_2:SetLevel(1)
+    end
 end
 
 function TrollsAndElvesGameMode:TrollBuyItem(player, item)
@@ -119,7 +129,12 @@ function TrollsAndElvesGameMode.PlayerWantsToBuild(cmdname, building) --maybe ad
 	local player = Convars:GetCommandClient()
 	player:GetAssignedHero():FindAbilityByName("trollsandelves_construct_building"):SetHidden(false)
 	local intent = MData:For("PlayerIntent", player)
-	if UnitsCustomKV[building] then intent.WantsToBuild = building end
+	if UnitsCustomKV[building] then
+        intent.WantsToBuild = building
+    else
+        print("This doesn't seem right")
+        FireGameEvent("dota_hud_error_message", {reason=0,message="Hello World!"})
+    end
 end
 
 function TrollsAndElvesGameMode.BuildingQueueUnit(cmdname, building, unit)

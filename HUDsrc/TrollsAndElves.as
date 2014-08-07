@@ -7,7 +7,7 @@
     import ValveLib.ResizeManager;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.*;
-     import flash.events.MouseEvent;
+    import flash.events.MouseEvent;
 
     import flash.geom.ColorTransform;
 
@@ -20,11 +20,15 @@
     // For chrome browser
     import flash.utils.getDefinitionByName;
 	
+	import buildings.*;
+	
 	public class TrollsAndElves extends MovieClip {
 		//Game API stuff
         public var gameAPI:Object;
         public var globals:Object;
         public var elementName:String;
+		
+		public static var Translate;
 		
 		// These vars determain how much of the stage we can use
         // They are updated as the stage size changes
@@ -83,6 +87,8 @@
 
 		private var itemsCustomKV;
 		private var resourceCustomKV;
+		
+		public var TownHallOverlay:TownHall;
 
 		//Load in our other scripts here
 		public var lumberOverlay:LumberOverlay;
@@ -210,7 +216,6 @@
        		
        		var s:Object = keys.target;
        		trace("roll over! " + s.itemName);
-
             // Workout where to put it
             var lp:Point = s.localToGlobal(new Point(0, 0));
 
@@ -230,22 +235,43 @@
        	public function onMouseRollOut(keys:Object){
        		 globals.Loader_heroselection.gameAPI.OnSkillRollOut();
        	}
-
+		public function tempEvent1(args:Object) : void {
+			trace("WE ARE FREE, FREE AS A BIRD, A CYBER BIRD");
+		}
+		public function tempEvent2(args:Object) : void {
+			trace("EXTERMINATE, EXTERMINATE");
+		}
 		public function unitEvent(args:Object) : void {
 			trace("###UNIT EVENT###");
-			var delayTimer:Timer = new Timer(1000, 1);
+			var delayTimer:Timer = new Timer(10, 1);
             delayTimer.addEventListener(TimerEvent.TIMER, delayedUnit);
             delayTimer.start();
 		}
 		public function heroEvent(args:Object) : void {
 			trace("###HERO EVENT###");
-			var delayTimer:Timer = new Timer(1000, 1);
+			var delayTimer:Timer = new Timer(10, 1);
             delayTimer.addEventListener(TimerEvent.TIMER, delayedUnit);
             delayTimer.start();
 		}
 		public function delayedUnit(e:TimerEvent) {
-			 trace(globals.Loader_actionpanel.movieClip.middle.unitName.text);
+			trace("Name: "+globals.Loader_actionpanel.movieClip.middle.unitName.text);
+			trace("Trans: "+Translate("#npc_trollsandelves_hall_1"));
+			var unitSelected:String = "";
+			switch(globals.Loader_actionpanel.movieClip.middle.unitName.text) {
+				case Translate("#npc_trollsandelves_hall_1"):
+				case Translate("#npc_trollsandelves_hall_2"):
+				case Translate("#npc_trollsandelves_hall_3"):
+					trace("We have ourselves a hall");
+					unitSelected = "hall";
+				break;
+				default:
+					trace("Boring entity selected: "+globals.Loader_actionpanel.movieClip.middle.unitName.text);
+				break;
+			}
+			TownHallOverlay.visible = (unitSelected == "hall");
+			trace("The townhall's visible status is "+TownHallOverlay.visible);
 		}
+		
 		
 		public function onLoaded() : void {
 			//trace('globals:');
@@ -259,6 +285,8 @@
 			//globals.Loader_inventory.movieClip.removeChild(globals.Loader_inventory.movieClip.inventory);
 			trace("##TrollsAndElves Starting TrollsAndElves HUD");
 			visible = true;
+			
+			Translate = Globals.instance.GameInterface.Translate;
 			
 			globals.scaleX = 0.5;
 			globals.scaleY = 0.5;
@@ -274,6 +302,10 @@
 			lumberOverlay.visible = true;
 			lumberOverlay.setLumber("1000"); //TEMP just to test if it looks nice
 			gameAPI.SubscribeToGameEvent("trollsandelves_lumber", this.lumberEvent);
+			
+			TownHallOverlay = new TownHall();
+			addChild(TownHallOverlay);
+			TownHallOverlay.visible = false;
 
 			gameAPI.SubscribeToGameEvent("tae_new_troll", this.newTroll);
 			gameAPI.SubscribeToGameEvent("tae_new_elf", this.newElf);
@@ -281,9 +313,13 @@
 
 			gameAPI.SubscribeToGameEvent("dota_player_update_selected_unit", this.heroEvent);
 			gameAPI.SubscribeToGameEvent("dota_player_update_query_unit", this.unitEvent);
+			
+			gameAPI.SubscribeToGameEvent("gameui_activated", this.tempEvent1);
+			gameAPI.SubscribeToGameEvent("gameui_hidden", this.tempEvent2);
 
 			//Resizing is blitz
 			Globals.instance.resizeManager.AddListener(this);
+			trace("###DONE");
 		}
 
 		public function buildMenuToggle(keys:Object){
@@ -391,6 +427,7 @@
 							trace("###ERRROR Ok, this didn't work..."); //This actually is used, not quite sure why yet.
 						}
 						lumberOverlay.onScreenResize(0, false);
+						TownHallOverlay.onScreenResize(0, false);
 					}
 					trace("###TrollsAndElves Resizing for 16:9 resolution");
 					resWidth = res16by9Width;
@@ -401,6 +438,7 @@
 						curRes = 1;
 						//lumberOverlay.onResize(1, globals.instance.Game.IsHUDFlipped());
 						lumberOverlay.onScreenResize(1, false);
+						TownHallOverlay.onScreenResize(1, false);
 					}
 					trace("###TrollsAndElves Resizing for 16:10 resolution");
 					resWidth = res16by10Width;
@@ -413,6 +451,7 @@
 					curRes = 2;
 					//lumberOverlay.onScreenResize(2, globals.instance.Game.IsHUDFlipped());
 					lumberOverlay.onScreenResize(2, false);
+					TownHallOverlay.onScreenResize(2, false);
 				}
 				resWidth = res4by3Width;
 				resHeight = res4by3Height;

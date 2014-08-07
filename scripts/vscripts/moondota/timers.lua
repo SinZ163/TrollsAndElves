@@ -42,8 +42,8 @@ function TimerThink(dt)
 
 	return 0.1
 end
-
-Entities:First():SetContextThink("TimerThink", TimerThink, 0.10) --whatup
+--obj = CEntities:First()
+--obj:SetContextThink("TimerThink", TimerThink, 0.10) --whatup
 
 --[[
 	Timers Util

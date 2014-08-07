@@ -448,6 +448,66 @@
 			}
 		}
 	}
+    "trollsandelves_troll_pillage"
+    {
+        "BaseClass"                         "ability_datadriven"
+        "MaxLevel"                          "1"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                "alchemist_goblins_greed"
+        
+        "Modifiers"
+        {
+            "modifier_pillage"
+            {
+                "Passive"                  "1"
+                "Hidden"                   "1"
+                "TextureName"              "alchemist_goblins_green"
+                "OnAttackLanded"    
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"      "scripts/vscripts/datadriven/ability_pillage.lua"
+                        "Function"        "pillage"
+                    }
+                }
+            }
+        }
+    }
+    "trollsandelves_troll_reveal"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel"						"1"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"GLOBAL"
+		"AbilityCastPoint"				"0"
+
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"0"
+			
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+        "OnSpellStart"
+        {
+            		"SpawnUnit"
+                    {
+                        "UnitName"	        "npc_vision_dummy"
+                        "Target"            "POINT"
+                        "Duration"	        "20"
+                        "UnitCount"		    "1"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "rattletrap_rocket_flare_explosion"
+                        "EffectAttachType"  "wat"
+                        "Target"            "POINT"
+                    }
+        }
+	}
 	//"trollsandelves_wisp_harvest"
 	//{
 	//	"BaseClass"						"ability_datadriven"
