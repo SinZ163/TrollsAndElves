@@ -92,6 +92,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
 		"AbilityCastPoint"	"0.001 0.001 0.001 0.001"
+        "AbilityCastRange"  "256"
 		"AbilityChannelTime"	"99"
 
 		"OnSpellStart"
@@ -169,6 +170,7 @@
 
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityCastPoint"				"0.001 0.001 0.001 0.001"
+        "AbilityCastRange"  "256"
 		"AbilityChannelTime"	"99"
 
 		"OnSpellStart"

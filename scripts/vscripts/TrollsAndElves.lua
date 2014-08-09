@@ -44,7 +44,6 @@ function TrollsAndElvesGameMode:onNPCSpawned(keys)
         print("Troll detected!")
         local ability_1 = spawnedUnit:FindAbilityByName("trollsandelves_troll_invis")
         local ability_2 = spawnedUnit:FindAbilityByName("trollsandelves_troll_pillage")
-        
         ability_1:SetLevel(1)
         ability_2:SetLevel(1)
     end
@@ -73,6 +72,11 @@ function TrollsAndElvesGameMode:TrollBuyItem(player, item)
 		local item = CreateItem( item, hero, hero )
 		hero:AddItem(item)
 	else --ERROR PLEASE
+        if lumber.Total >= lumbercost then
+            ShowGenericPopupToPlayer(player, "#trollsandelves_error_purchase", "#trollsandelves_error_gold", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN)
+        else
+            ShowGenericPopupToPlayer(player, "#trollsandelves_error_purchase", "#trollsandelves_error_lumber", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN)
+        end
 	end
 end
 

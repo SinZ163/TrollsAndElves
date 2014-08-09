@@ -10,9 +10,7 @@
 		"Ability1"			"trollsandelves_construct_building"
 		"Ability2"			"trollsandelves_resume_building"
 		"Ability3"			"trollsandelves_build_menu"
-		"Ability4"			"trollsandelves_elf_make_night"
-
-		
+		"Ability4"			"trollsandelves_elf_make_night"		
 	}
 	"npc_dota_hero_trollsandelves_troll"
 	{
