@@ -45,9 +45,20 @@ else
     print(totalErrors..' TrollsAndElves modules failed to load!\n')
 end
 
-Convars:RegisterCommand("quell2", function(args)
+Convars:RegisterCommand("makeuni", function(cmdname, name, team)
+    local me = Convars:GetCommandClient():GetAssignedHero()
+    local unit = CreateUnitByName(name, me:GetOrigin(), true, nil, nil, tonumber(team))
+    FindClearSpaceForUnit(unit, me:GetOrigin(), true)
+end, "Fuck", 0)
+
+Convars:RegisterCommand("creep", function(args)
     local h = Convars:GetCommandClient():GetAssignedHero()
-        CreateUnitByName("npc_dota_creature_creep_melee", h:GetOrigin(), true, nil, nil, 3)
+        CreateUnitByName("npc_dota_creature_creep_melee", h:GetOrigin(), true, nil, nil, 2)
+        end, "Fuck", 0)
+
+Convars:RegisterCommand("tower", function(args)
+    local h = Convars:GetCommandClient():GetAssignedHero()
+        CreateUnitByName("npc_dota_goodguys_tower1_top", h:GetOrigin(), true, nil, nil, 2)
         end, "Fuck", 0)
 
 Convars:RegisterCommand("quell", function(args)

@@ -20,6 +20,68 @@
 		}
 	}
 
+	"troll_teleport"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"BaseClass"						"ability_datadriven"
+		"Maxlevel"						"1"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"AbilityCooldown"	"60"
+		
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/datadriven/teleport.lua"
+				"Function"	    "OnSpellStart"
+				"Target"	"TARGET"
+			}
+		}
+	}
+
+	"troll_tp"
+	{
+		"BaseClass"	"ability_datadriven"
+		
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED "
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"AbilityCastPoint"	"0.001 0.001 0.001 0.001"
+		"AbilityChannelTime"	"3"
+		"AbilityCooldown"	"60"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/datadriven/teleport.lua"
+				"Function"	"OnSpellStart"
+				"Target"	"TARGET"
+			}
+		}
+
+		"OnChannelFinish"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/datadriven/teleport.lua"
+				"Function"	"OnChannelFinish"
+			}
+		}
+
+		"OnChannelInterrupted"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/datadriven/teleport.lua"
+				"Function"	"OnChannelInterrupted"
+			}
+		}
+	}
+
 	"trollsandelves_building_upgrade"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"

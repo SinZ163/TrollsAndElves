@@ -19,11 +19,13 @@
 		"override_hero"			"npc_dota_hero_troll_warlord"
 		"ModelScale"			"1.5"
         
-        "AbilityLayout"     "4"
+        "AbilityLayout"     "5"
 		"Ability1"			"trollsandelves_troll_invis"
         "Ability2"          "trollsandelves_troll_pillage"
         "Ability3"          "trollsandelves_troll_reveal"
+        "Ability4"          "troll_tp"
 	}
+
 //	"npc_dota_hero_trollsandelves_angel"
 //	{
 	//	"override_hero"			"npc_dota_hero_crystal_maiden"
