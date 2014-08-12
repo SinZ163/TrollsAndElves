@@ -9,12 +9,16 @@
 		public var itemName:String;
 		public var onClick:Function;
 
-		public function ResourceIcon(resourceName:String, onClick:Function){
+		public function ResourceIcon(resourceName:String, onClick:Function, item:Boolean = false){
 			this.onClick = onClick;
 			this.resourceName = resourceName;
 			addEventListener(MouseEvent.CLICK, onClickInternal, false, 0, true);
 			this.itemName = resourceName;
-	        Globals.instance.LoadAbilityImage(itemName, this);
+            if (item) {
+                Globals.instance.LoadItemImage(itemName, this);
+            } else {
+                Globals.instance.LoadAbilityImage(itemName, this);
+            }
 		}
 
 		public function getResourceName(){

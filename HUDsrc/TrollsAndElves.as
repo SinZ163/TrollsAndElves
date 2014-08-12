@@ -44,8 +44,12 @@
         private static var SL_HEIGHT = 43;
 
         private var ITEM_WIDTH = 100;
+		private var ITEM_HEIGHT = 80;
+		
+		private var SPELL_WIDTH = 128;
+		private var SPELL_HEIGHT = 128;
+		
         private var ITEM_PADDING = 4;
-        private var ITEM_HEIGHT = 80;
         private var ROW_SIZE = 1100;
         private var COLUMN_SIZE = 300; 
 
@@ -123,9 +127,16 @@
 			trace("Assigned panel");
 
 			//maybe should be able to specify these per-case
-            var entryWidth:Number = ITEM_WIDTH + ITEM_PADDING;
+			var entryWidth:Number;
+			var entryHeight:Number;
+			if (panelName == "itemPanel") {
+				entryWidth = ITEM_WIDTH + ITEM_PADDING;
+				entryHeight = ITEM_HEIGHT + ITEM_PADDING;
+			} else {
+				entryWidth = SPELL_WIDTH + ITEM_PADDING;
+				entryHeight = SPELL_HEIGHT + ITEM_PADDING;
+			}
             var totalWidth:Number = ROW_SIZE;
-            var entryHeight:Number = ITEM_HEIGHT + ITEM_PADDING;
             var totalHeight:Number = COLUMN_SIZE;
             var useableHeight:Number = 320;
             var entriesAcross = totalWidth / entryWidth;
