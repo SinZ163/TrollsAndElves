@@ -476,8 +476,29 @@
             this.scaleY = re.ScreenHeight/maxStageHeight;
 		}
 		
+		public function hookAndReplace(btn:MovieClip, type:String, eventType:String, func:Function) : MovieClip {
+			var parent = btn.parent;
+			var oldx = btn.x;
+			var oldy = btn.y;
+			var oldwidth = btn.width;
+			var oldheight = btn.height;
+			
+			var newObjectClass = getDefinitionByName(type);
+			var newObject = new newObjectClass();
+			newObject.x = oldx;
+			newObject.y = oldy;
+			newObject.width = oldwidth;
+			newObject.height = oldheight;
+			
+			parent.removeChild(btn);
+			parent.addChild(newObject);
+			
+			newObject.addEventListener(eventType, func);
+			
+			return newObject;
+		}
 		
-		// Function to repeat a string many times
+		// Shamelessly stolen from Frota
         public function strRep(str, count) {
             var output = "";
             for(var i=0; i<count; i++) {
