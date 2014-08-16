@@ -30,6 +30,7 @@ end
 -- Load Frota
 loadModule('lib.json')         -- Json Library
 loadModule('TrollsAndElves')        -- Main program
+loadModule('entity_init')
 require("moondota/moondota")
 
 if totalErrors == 0 then

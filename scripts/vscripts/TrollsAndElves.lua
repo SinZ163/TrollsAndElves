@@ -1,6 +1,6 @@
 ﻿TechBuilding = {
 	npc_trollsandelves_rock_1 = true
-}
+} --what is this doing here
 
 
 if TrollsAndElvesGameMode == nil then
@@ -17,13 +17,16 @@ end
 
 function TrollsAndElvesGameMode:TechAdvance(player, building)
 	print("Upgrading " .. building)
-	local tech = MData:For("PlayerTech", player)
-	tech.TechBuildings[building] = true
-	if building == "npc_trollsandelves_rock_1" then player:GetAssignedHero():FindAbilityByName("trollsandelves_build_menu"):SetHidden(false) end
+	
+	player.TechBuildings[building] = true
+	if building == "npc_trollsandelves_rock_1" then 
+		local buildmenu = player:GetAssignedHero():FindAbilityByName("trollsandelves_build_menu")
+		buildmenu:SetHidden(false) 
+		buildmenu:SetLevel(1) 
+	end
 end
 
 function TrollsAndElvesGameMode:InitGameMode()
-
 	Msg("Hello World, My name is TrollsAndElves!")
 	
 	--CEntities:FindByClassname(nil, "dota_base_game_mode"):SetFogOfWarDisabled(true)
@@ -40,12 +43,15 @@ end
 
 function TrollsAndElvesGameMode:onNPCSpawned(keys)
     local spawnedUnit = EntIndexToHScript(self.entindex)
+    print(spawnedUnit:GetClassname())
     if spawnedUnit:GetClassname() == "npc_dota_hero_troll_warlord" or spawnedUnit:GetClassname() == "npc_dota_hero_lycan" then
         print("Troll detected!")
         local ability_1 = spawnedUnit:FindAbilityByName("trollsandelves_troll_invis")
         local ability_2 = spawnedUnit:FindAbilityByName("trollsandelves_troll_pillage")
         ability_1:SetLevel(1)
         ability_2:SetLevel(1)
+    elseif spawnedUnit:GetClassname() == "npc_dota_hero_Invoker" then --yep capital I
+    	EntityInit:NewByType(spawnedUnit, "Builder")
     end
 end
 
@@ -96,6 +102,7 @@ function TrollsAndElvesGameMode:onPlayerConnect(keys)
 	end
 
 	player = EntIndexToHScript(self.index + 1)
+	EntityInit:NewByClassname(player, "player")
 
 	FireGameEvent("tae_new_troll",{pid=player:GetPlayerID()})
 
@@ -103,9 +110,9 @@ function TrollsAndElvesGameMode:onPlayerConnect(keys)
 end
 
 function TrollsAndElvesGameMode:ModifyLumber(player, sum) --negative to reduce
-	local lumber = MData:For("PlayerLumber", player)
-	if sum > lumber.Amount then 
-		lumber.Amount = lumber.Amount + sum
+	local lumber = player.LumberTotal
+	if sum > player.LumberTotal then 
+		player.LumberTotal = player.LumberTotal + sum
 		return true
 	else return false
 	end
@@ -132,7 +139,6 @@ function TrollsAndElvesGameMode.PlayerWantsToBuild(cmdname, building) --maybe ad
 	print(building)
 	local player = Convars:GetCommandClient()
 	player:GetAssignedHero():FindAbilityByName("trollsandelves_construct_building"):SetHidden(false)
-	local intent = nil
 	if UnitsCustomKV[building] then
         player.WantsToBuild = building
     else

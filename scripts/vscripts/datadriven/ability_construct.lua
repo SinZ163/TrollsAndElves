@@ -5,10 +5,7 @@ function OnSpellStart(keys)
     
 	local intent = builder:GetPlayerOwner().WantsToBuild
 	print(intent)
-	if not intent then
-		print("New elf!") --need to redo initialization stuff lost in rewrite
-		intent = "npc_trollsandelves_rock_1"
-	end
+
 	local building = CreateUnitByName(intent, keys.target_points[1], false, nil, nil, builder:GetTeamNumber())
     
 	building.Type = intent
@@ -23,9 +20,7 @@ function OnSpellStart(keys)
     building:AddNewModifier(builder, nil, "modifier_place_building_path_blocker", blockInfo)
     
 	print("Building " .. intent)
-
-	if not builder.Buildings then builder.Buildings = {} end --need to move custom field initialization out of these files and someplace central and descriptive
-
+	building.Finished = false
 	builder.MostRecent = building
 	builder.Buildings[building] = building
 
@@ -66,6 +61,7 @@ function OnIntervalThink_modifier_trollsandelves_construct_think(keys)
 
 		if building.Finished == false then 
 			building.Finished = true
+			print("Setting controll!")
 			building:SetControllableByPlayer(playerowner:GetPlayerID(), true)
 		end
 		FireGameEvent("trollsandelves_stopped_building", {pid = playerowner:GetPlayerID()})
