@@ -1,7 +1,9 @@
 ﻿package buildings {
 	
 	import flash.display.MovieClip;
+	import scaleform.clik.events.SliderEvent;
 	
+    import flash.utils.getDefinitionByName;
 	
 	public class TownHall extends MovieClip {
 		
@@ -18,11 +20,24 @@
 		private var res16by10Y = 952;
 		private var   res4by3Y = 952;
 		
+		public var slidingBar;
+		public var buyText;
+		public var sellText;
+		public var sliderValue;
+		
 		public function TownHall() {
 			this.x = 10;
 			this.y = 10;
+			
+			var newSlider = hookAndReplace(slidingBar, "Slider_New", SliderEvent.VALUE_CHANGE, onSliderChanged);
+			newSlider.maximum = 1000;
+			newSlider.minimum = 1;
+			newSlider.value = 10;
+			newSlider.snapInterval = 1;
 		}
-		
+		public function onSliderChanged(sliderInfo:SliderEvent): void {
+			sliderValue.text = int(sliderInfo.value);
+		}
 		public function onScreenResize(scale:int, left:Boolean) : void {
 			trace("##LumberOverlay getting ready to resize");
 			switch(scale) {
@@ -57,6 +72,28 @@
 					this.y = res4by3Y;
 					break;
 			}
+		}
+		
+		public function hookAndReplace(btn:MovieClip, type:String, eventType:String, func:Function) : MovieClip {
+			var parent = btn.parent;
+			var oldx = btn.x;
+			var oldy = btn.y;
+			var oldwidth = btn.width;
+			var oldheight = btn.height;
+			
+			var newObjectClass = getDefinitionByName(type);
+			var newObject = new newObjectClass();
+			newObject.x = oldx;
+			newObject.y = oldy;
+			newObject.width = oldwidth;
+			newObject.height = oldheight;
+			
+			parent.removeChild(btn);
+			parent.addChild(newObject);
+			
+			newObject.addEventListener(eventType, func);
+			
+			return newObject;
 		}
 	}
 	

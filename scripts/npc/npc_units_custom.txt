@@ -121,6 +121,9 @@
 		"MinimapIcon"				""
 		"HealthBarOffset"		"400000"
 		"MinimapIconSize"			"1"
+        
+        "VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
 
 		"Ability1"	"ability_hidden_leech"
 	}
@@ -423,7 +426,7 @@
 		"BaseClass"	"npc_dota_building"
 		"StatusHealth" "4"
 		"Model"	"models\props_structures\bad_ancient001.vmdl"
-        "ModelScale" "0.5"
+        "ModelScale" "0.2"
 
 		"BuildingType"	"Rock"
 		"Requisite"	"None"
@@ -433,7 +436,7 @@
 
 		"MinimapIcon"				""
 		"HealthBarOffset"			"250"
-		"Ability1"					"trollsandelves_building_destroy"			// Ability 1.
+		"Ability1"					"trollsandelves_destroy_unit"			    // Ability 1.
 		"Ability2"					"trollsandelves_building_upgrade"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
@@ -451,8 +454,8 @@
 		"BountyGoldMin"				"352"		// Gold earned min.
 		"BountyGoldMax"				"370"		// Gold earned max.
 
-		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"		
-		"RingRadius"				"220"
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"		
+		"RingRadius"				"64"
 
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
 
@@ -462,7 +465,7 @@
 		"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
 
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
-		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BARRACKS"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
 
 		"VisionDaytimeRange"		"900"		// Range of vision during day light.
 		"VisionNighttimeRange"		"600"		// Range of vision at night time.
@@ -501,8 +504,8 @@
 		"BountyGoldMin"				"352"		// Gold earned min.
 		"BountyGoldMax"				"370"		// Gold earned max.
 
-		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"		
-		"RingRadius"				"220"
+		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"		
+		"RingRadius"				"128"
 
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
 
@@ -551,7 +554,7 @@
 		"BountyGoldMin"				"352"		// Gold earned min.
 		"BountyGoldMax"				"370"		// Gold earned max.
 
-		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"		
+		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"		
 		"RingRadius"				"220"
 
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
@@ -601,7 +604,7 @@
 		"BountyGoldMin"				"352"		// Gold earned min.
 		"BountyGoldMax"				"370"		// Gold earned max.
 
-		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"		
+		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"		
 		"RingRadius"				"220"
 
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
@@ -651,7 +654,7 @@
 		"BountyGoldMin"				"352"		// Gold earned min.
 		"BountyGoldMax"				"370"		// Gold earned max.
 
-		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"		
+		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"		
 		"RingRadius"				"220"
 
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
@@ -701,7 +704,7 @@
 		"BountyGoldMin"				"352"		// Gold earned min.
 		"BountyGoldMax"				"370"		// Gold earned max.
 
-		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"		
+		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"		
 		"RingRadius"				"220"
 
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
@@ -801,7 +804,7 @@
 		"BountyGoldMin"				"352"		// Gold earned min.
 		"BountyGoldMax"				"370"		// Gold earned max.
 
-		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"		
+		"BoundsHullName"			"DOTA_HULL_SIZE_TOWER"		
 		"RingRadius"				"220"
 
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air

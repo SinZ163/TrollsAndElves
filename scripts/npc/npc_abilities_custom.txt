@@ -5,6 +5,38 @@
 	//=================================================================================================================
 	// Trolls and Elves Abilities by SinZ
 	//=================================================================================================================
+	"trollsandelves_gridnav_test"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"					"ability_datadriven"
+		"MaxLevel"					"1"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"			"CASTER"
+				"ModifierName"			"modifier_place_building_path_blocker"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"alignment_grid_size"		"4" //This building is 4x4 on the gridnav
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"squares_per_side"		"1" //This field makes no sense, all it does is scale alignment_grid_size
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"building_size"			"512" //hopefully 4 grid units, in dota units.
+			}
+		}
+	}
 	"trollsandelves_destroy_unit"
 	{
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"

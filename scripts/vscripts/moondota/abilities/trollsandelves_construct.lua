@@ -9,14 +9,22 @@ end
 --callbacks take a table filled with wrapped objects
 function ConstructDef:OnSpellStart(chest)
 	local builder = chest.caster 
-
+    
 	local intent = MData:For("PlayerIntent", builder.Ent:GetPlayerOwner())
 	local buildingent = CreateUnitByName(intent.WantsToBuild, chest.target_points[1], false, nil, nil, builder.Ent:GetTeamNumber())
+    
 	local building = MData:For("Building", buildingent)
 	building.Type = intent.WantsToBuild
 	building.PlayerOwner = builder.Ent:GetPlayerOwner()
 	buildingent:ModifyHealth(1, nil, true, 0)
-
+    print("test");print("test2");
+    local blockInfo = {
+				alignment_grid_size=2, --This building is 2x2 on the gridnav
+				squares_per_side=1, 
+				building_size=128
+    }
+    buildingent:AddNewModifier(builder, nil, "modifier_place_building_path_blocker", blockInfo)
+    
 	print("Building " .. intent.WantsToBuild)
 
 	builder.MostRecent = building

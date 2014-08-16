@@ -16,6 +16,7 @@
 	{
 		"override_hero"			"npc_dota_hero_troll_warlord"
 		"ModelScale"			"1.5"
+        "BoundsHullName"        "DOTA_HULL_SIZE_HUGE"
         
         "AbilityLayout"     "5"
 		"Ability1"			"trollsandelves_troll_invis"
