@@ -132,13 +132,14 @@ function TrollsAndElvesGameMode.PlayerWantsToBuild(cmdname, building) --maybe ad
 	print(building)
 	local player = Convars:GetCommandClient()
 	player:GetAssignedHero():FindAbilityByName("trollsandelves_construct_building"):SetHidden(false)
-	local intent = MData:For("PlayerIntent", player)
+	local intent = nil
 	if UnitsCustomKV[building] then
-        intent.WantsToBuild = building
+        player.WantsToBuild = building
     else
         print("This doesn't seem right")
         FireGameEvent("dota_hud_error_message", {reason=0,message="Hello World!"})
     end
+    print(player.WantsToBuild)
 end
 
 function TrollsAndElvesGameMode.BuildingQueueUnit(cmdname, building, unit)

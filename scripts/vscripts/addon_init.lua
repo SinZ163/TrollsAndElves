@@ -31,8 +31,6 @@ end
 loadModule('lib.json')         -- Json Library
 loadModule('TrollsAndElves')        -- Main program
 require("moondota/moondota")
-require("moondota/abilities/trollsandelves_tether_proxy")
-require("moondota/abilities/trollsandelves_construct")
 
 if totalErrors == 0 then
     -- No loading issues
