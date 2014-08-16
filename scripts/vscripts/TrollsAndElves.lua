@@ -56,8 +56,6 @@ function TrollsAndElvesGameMode:onNPCSpawned(keys)
 end
 
 function TrollsAndElvesGameMode:TrollBuyItem(player, item)
-
-	local lumber = MData:For("PlayerLumber", player)
 	local itemdata = ItemsCustomKV[item]
 	local playergold = PlayerResource:GetGold(player:GetPlayerID())
 	local lumbercost = itemdata.LumberCost or 0
@@ -67,18 +65,18 @@ function TrollsAndElvesGameMode:TrollBuyItem(player, item)
 
 	print(itemdata)
 	print(playergold)
-	print(lumber.Total)
+	print(player.LumberTotal)
 	print(itemdata.LumberCost)
 	print(itemdata.ItemCost)
 
-	if lumber.Total >= lumbercost and playergold >= itemcost then 
+	if player.LumberTotal >= lumbercost and playergold >= itemcost then 
 		PlayerResource:ModifyGold(playerid, -itemcost, false, 0)
-		lumber.Total = lumber.Total - lumbercost
-		FireGameEvent("trollsandelves_lumber", {pid=playerid, lumber=lumber.Total})
+		player.LumberTotal = player.LumberTotal - lumbercost
+		FireGameEvent("trollsandelves_lumber", {pid=playerid, lumber=player.LumberTotal})
 		local item = CreateItem( item, hero, hero )
 		hero:AddItem(item)
 	else --ERROR PLEASE
-        if lumber.Total >= lumbercost then
+        if player.LumberTotal >= lumbercost then
             ShowGenericPopupToPlayer(player, "#trollsandelves_error_purchase", "#trollsandelves_error_gold", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN)
         else
             ShowGenericPopupToPlayer(player, "#trollsandelves_error_purchase", "#trollsandelves_error_lumber", "", "", DOTA_SHOWGENERICPOPUP_TINT_SCREEN)
@@ -153,15 +151,14 @@ function TrollsAndElvesGameMode.BuildingQueueUnit(cmdname, building, unit)
 	local lumbercost = unitdata.LumberCost
 	local goldcost = unitdata.GoldCost
 	local playerowner = Convars:GetCommandClient()
-	local playerlumber = MData:For("PlayerLumber", playerowner)
-	local currentlumber = playerlumber.Total
+	local currentlumber = playerowner.LumberTotal
 	local currentgold = PlayerResource:GetGold(playerowner:GetPlayerID())
 	local team = playerowner:GetTeam()
 
 	--findclearspace won't work, need to generate an emission point when the building is created
 	if currentlumber >= lumbercost and currentgold >= goldcost then 
 		playerowner:ModifyGold(-goldcost, true, 0)	
-		playerlumber.Total = currentlumber - lumbercost
+		playerowner.LumberTotal = currentlumber - lumbercost
 		local unit = CreateUnitByName(unit, Vector(0,0,0), true, nil, nil, keys.caster:GetTeamNumber())
 		FindClearSpaceForUnit(unit, keys.caster:GetOrigin(), true)
 	end
