@@ -8,10 +8,10 @@ end
 function TetherProxyDef:RedirectToDummy(caster, dummy)
 	local tether = caster:FindAbilityByName("trollsandelves_hidden_tether")
 	tether:SetLevel(4)
-	tether:SetHidden(false)
 	tether:EndCooldown()
 	
-	caster:CastAbilityOnTarget(dummy, tether, 0)
+	caster:SetCursorCastTarget(dummy)
+	tether:OnSpellStart()
 end
 
 function TetherProxyDef:Untether(caster)
@@ -30,8 +30,6 @@ end
 
 function TetherProxyDef:OnIntervalThink_modifier_trollsandelves_tether_leech(chest)
 	local caster = chest.caster
-
-	caster.Ent:FindAbilityByName("trollsandelves_hidden_tether"):SetHidden(true)
 
 	if caster.Ent:HasModifier("modifier_wisp_tether") then
 		local player = MData:For("PlayerLumber", PlayerResource:GetPlayer(caster.Ent:GetPlayerID()))
