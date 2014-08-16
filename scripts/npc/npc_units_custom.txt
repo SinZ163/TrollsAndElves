@@ -6,6 +6,85 @@
 	//Trolls and Elves units below, by SinZ
 	//=================================================================================
 	
+	"npc_trollsandelves_collector_1"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"StatusHealth"	"5"	
+
+		"ArmorPhysical"				"0"	
+
+		"MovementSpeed"				"295"									// Speed.
+		"MovementTurnRate"			"0.7"									// Turning rate.
+
+		"GoldCost"	"512"
+		"Speed" "0.125"
+
+		"Location"	"Ancient Tree"
+	}
+
+	"npc_trollsandelves_collector_2"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"StatusHealth"	"5"	
+
+		"ArmorPhysical"				"0"	
+
+		"MovementSpeed"				"295"									// Speed.
+		"MovementTurnRate"			"0.7"									// Turning rate.
+
+		"GoldCost"	"1024"
+		"Speed" "0.25"
+
+		"Location"	"Ancient Tree"
+	}
+
+	"npc_trollsandelves_collector_3"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"StatusHealth"	"5"	
+
+		"ArmorPhysical"				"0"	
+
+		"MovementSpeed"				"295"									// Speed.
+		"MovementTurnRate"			"0.7"									// Turning rate.
+
+		"GoldCost"	"2048"
+		"Speed" "0.50"
+
+		"Location"	"Ancient Tree"
+	}
+
+	"npc_trollsandelves_collector_4"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"StatusHealth"	"5"	
+
+		"ArmorPhysical"				"0"	
+
+		"MovementSpeed"				"295"									// Speed.
+		"MovementTurnRate"			"0.7"									// Turning rate.
+
+		"GoldCost"	"4096"
+		"Speed" "1"
+
+		"Location"	"Ancient Tree"
+	}
+
+	"npc_trollsandelves_collector_5"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"StatusHealth"	"5"	
+
+		"ArmorPhysical"				"0"	
+
+		"MovementSpeed"				"295"									// Speed.
+		"MovementTurnRate"			"0.7"									// Turning rate.
+
+		"GoldCost"	"4096"
+		"Speed" "1"
+
+		"Location"	"Ancient Tree"
+	}
 
 	"npc_dota_creature_creep_melee"
 	{
