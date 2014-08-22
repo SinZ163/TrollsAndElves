@@ -598,10 +598,14 @@
                     }
                     "FireEffect"
                     {
-                        "EffectName"        "rattletrap_rocket_flare_explosion"
-                        "EffectAttachType"  "wat"
+                        "EffectName"        "particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare_explosion.vpcf"
+                        "EffectAttachType"  "PATTACH_ABSORIGIN"
                         "Target"            "POINT"
                     }
+        }
+        "Precache"
+        {
+            "particle_folder"      "particles/units/heroes/hero_rattletrap"
         }
 	}
 	//"trollsandelves_wisp_harvest"

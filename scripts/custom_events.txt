@@ -20,6 +20,17 @@
 
 "CustomEvents"
 {
+	//StatsCollection Service by jimmydory and SinZ
+	"stat_collection"
+	{
+        "pid"           "byte"
+	"modid"		"string"
+	"fancyinfo"	"string"
+        "fakedata1"     "string"
+        "fakedata2"     "string"
+	}
+	//End StatsCollection
+
 	// This is fired when a player's lumber count changes
 	"trollsandelves_lumber"
 	{

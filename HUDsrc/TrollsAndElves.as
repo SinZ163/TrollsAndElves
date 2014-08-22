@@ -287,6 +287,10 @@
 		public function onLoaded() : void {
 			//trace('globals:');
 			//PrintTable(globals, 1);
+			trace("###STATS_COLLECTION");
+			var statsCollection = new StatsCollection(gameAPI, globals);
+			trace("###END_STATS_COLLECTION");
+			
 			trace("##TrollsAndElves Fixing healthbar");
 			globals.GameInterface.SetConvar("dota_health_per_vertical_marker", "25000");
 			

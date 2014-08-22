@@ -37,6 +37,7 @@ function TrollsAndElvesGameMode:InitGameMode()
 	ListenToGameEvent("dota_item_purchased", Dynamic_Wrap(TrollsAndElvesGameMode, "OnItemPurchased"), self)
     
     ListenToGameEvent('npc_spawned', Dynamic_Wrap(TrollsAndElvesGameMode, "onNPCSpawned"), self)
+    
 	-- Start thinkers
     --self._scriptBind:BeginThink('TrollsAndElvesThink', Dynamic_Wrap(TrollsAndElvesGameMode, 'Think'), 0.1)
 end
@@ -136,6 +137,17 @@ end
 function TrollsAndElvesGameMode.PlayerWantsToBuild(cmdname, building) --maybe add some stuff to do stuff here
 	print(building)
 	local player = Convars:GetCommandClient()
+    
+    --temp
+    print("###StatsCollection sending stats")
+    FireGameEvent("stat_collection",{
+        pid=player:GetPlayerID(),
+        fakedata1="testing 123",
+        fakedata2="321 gnitset",
+        modid="TrollsAndElves",
+        fancyinfo="yolo swaggins and the fellowship of the bling"
+    })
+    
 	player:GetAssignedHero():FindAbilityByName("trollsandelves_construct_building"):SetHidden(false)
 	if UnitsCustomKV[building] then
         player.WantsToBuild = building
@@ -154,7 +166,7 @@ function TrollsAndElvesGameMode.BuildingQueueUnit(cmdname, building, unit)
 	local currentlumber = playerowner.LumberTotal
 	local currentgold = PlayerResource:GetGold(playerowner:GetPlayerID())
 	local team = playerowner:GetTeam()
-
+    
 	--findclearspace won't work, need to generate an emission point when the building is created
 	if currentlumber >= lumbercost and currentgold >= goldcost then 
 		playerowner:ModifyGold(-goldcost, true, 0)	

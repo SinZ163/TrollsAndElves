@@ -23,7 +23,7 @@
 		"AbilityCastRange"				"1024"
 		"AbilityCastPoint"				"0.0"
 		
-		"BuildingName"					"npc_trollsandelves_building_tree"
+		"BuildingName"					"npc_trollsandelves_rock_1"
 		"PreventBlocking"				"1" //Yes, we want to alter the grid
 
 		"AbilitySpecial"
