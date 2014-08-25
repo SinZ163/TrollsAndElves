@@ -24,10 +24,7 @@
 	"stat_collection"
 	{
         "pid"           "byte"
-	"modid"		"string"
-	"fancyinfo"	"string"
-        "fakedata1"     "string"
-        "fakedata2"     "string"
+	"json"          "string"
 	}
 	//End StatsCollection
 

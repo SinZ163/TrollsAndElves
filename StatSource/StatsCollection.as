@@ -11,11 +11,11 @@
     import flash.events.Event;
     import flash.events.ProgressEvent;
     import flash.events.IOErrorEvent;
-	import com.adobe.serialization.json.JSONEncoder;
 	
-    public class StatsCollection {
-		public var gameAPI:Object;
-		public var globals:Object;
+    public class StatsCollection extends MovieClip {
+        public var gameAPI:Object;
+        public var globals:Object;
+        public var elementName:String;
 		
 		var sock:Socket;
 		var json:String;
@@ -23,10 +23,8 @@
 		var SERVER_ADDRESS:String = "176.31.182.87";
 		var SERVER_PORT:Number = 4444;
 		
-        public function StatsCollection(gameAPI, globals) {
-			this.gameAPI = gameAPI;
-			this.globals = globals;
-			trace("Setting event");
+        public function onLoaded() : void {
+			trace("##Loading StatsCollection by SinZ");
 			gameAPI.SubscribeToGameEvent("stat_collection", this.statCollect);
         }
 		public function socketConnect(e:Event) {
@@ -55,7 +53,7 @@
 				trace("Correct player");
 				delete args.pid;
 				delete args.splitscreenplayer;
-				json = new JSONEncoder( args ).getString();
+				json = args.json;
 				
 				sock = new Socket();
 			    // Setup socket event handlers

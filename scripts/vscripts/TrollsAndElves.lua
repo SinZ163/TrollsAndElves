@@ -140,12 +140,14 @@ function TrollsAndElvesGameMode.PlayerWantsToBuild(cmdname, building) --maybe ad
     
     --temp
     print("###StatsCollection sending stats")
-    FireGameEvent("stat_collection",{
+    FireGameEvent("stat_collection", {
         pid=player:GetPlayerID(),
-        fakedata1="testing 123",
-        fakedata2="321 gnitset",
-        modid="TrollsAndElves",
-        fancyinfo="yolo swaggins and the fellowship of the bling"
+        json=JSON:encode({
+            fakedata1="testing 123",
+            fakedata2="321 gnitset",
+            modid="TrollsAndElves",
+            fancyinfo="yolo swaggins and the fellowship of the bling"
+        })
     })
     
 	player:GetAssignedHero():FindAbilityByName("trollsandelves_construct_building"):SetHidden(false)

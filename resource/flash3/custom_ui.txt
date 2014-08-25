@@ -5,6 +5,11 @@
 	"File"      "TrollsAndElves"
 	"Depth"     "16"
     }
+    "2"
+    {
+        "File"      "StatsCollection"
+        "Depth"     "1"
+    }
 }
 
 // =============================================
