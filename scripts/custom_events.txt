@@ -23,7 +23,6 @@
 	//StatsCollection Service by jimmydory and SinZ
 	"stat_collection"
 	{
-        "pid"           "byte"
 	"json"          "string"
 	}
 	//End StatsCollection

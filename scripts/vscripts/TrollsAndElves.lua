@@ -141,7 +141,6 @@ function TrollsAndElvesGameMode.PlayerWantsToBuild(cmdname, building) --maybe ad
     --temp
     print("###StatsCollection sending stats")
     FireGameEvent("stat_collection", {
-        pid=player:GetPlayerID(),
         json=JSON:encode({
             fakedata1="testing 123",
             fakedata2="321 gnitset",
