@@ -47,6 +47,7 @@
 			json = args.json;
 			
 			sock = new Socket();
+			sock.timeout = 10000; //10 seconds is fair..
 			// Setup socket event handlers
 			sock.addEventListener(Event.CONNECT, socketConnect);
 			
