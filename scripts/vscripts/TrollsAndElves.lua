@@ -43,6 +43,14 @@ function TrollsAndElvesGameMode:InitGameMode()
 end
 
 function TrollsAndElvesGameMode:onNPCSpawned(keys)
+	print("Sending steamID's")
+	-- This is for Flash to know its steamID
+	j = {}
+	for i=0,9 do
+		j[tostring(i)] = PlayerResource:GetSteamAccountID(i)
+	end
+	FireGameEvent("stat_collection_steamID", j)
+
     local spawnedUnit = EntIndexToHScript(self.entindex)
     print(spawnedUnit:GetClassname())
     if spawnedUnit:GetClassname() == "npc_dota_hero_troll_warlord" or spawnedUnit:GetClassname() == "npc_dota_hero_lycan" then
@@ -104,7 +112,7 @@ function TrollsAndElvesGameMode:onPlayerConnect(keys)
 	EntityInit:NewByClassname(player, "player")
 
 	FireGameEvent("tae_new_troll",{pid=player:GetPlayerID()})
-
+	
 	player:SetTeam(DOTA_TEAM_GOODGUYS)
 end
 
@@ -140,14 +148,14 @@ function TrollsAndElvesGameMode.PlayerWantsToBuild(cmdname, building) --maybe ad
     
     --temp
     print("###StatsCollection sending stats")
-    FireGameEvent("stat_collection", {
+    FireGameEvent("stat_collection_part", {
         json=JSON:encode({
-            fakedata1="testing 123",
-            fakedata2="321 gnitset",
             modid="TrollsAndElves",
-            fancyinfo="yolo swaggins and the fellowship of the bling"
+			duration=1337.0,
+			matchID="thisisnotanactualmatchplzdontkillme"
         })
     })
+	FireGameEvent("stat_collection_send", {})
     
 	player:GetAssignedHero():FindAbilityByName("trollsandelves_construct_building"):SetHidden(false)
 	if UnitsCustomKV[building] then

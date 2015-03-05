@@ -1263,8 +1263,8 @@
 		"ItemShopTags"					""
 		"ItemQuality"					"common"
 		"ItemShareability"				"ITEM_NOT_SHAREABLE"
-		"ItemSellable"					"0"
-		"ItemKillable"					"0"
+		"ItemSellable"					"1"
+		"ItemKillable"					"1"
 		//===========================================================
 		// *   Ability Info
 

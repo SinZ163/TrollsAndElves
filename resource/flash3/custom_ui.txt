@@ -2,12 +2,27 @@
 {
     "1"
     {
-	"File"      "TrollsAndElves"
-	"Depth"     "16"
+        "File"      "StatsCollectionRPG"
+        "Depth"     "1"
     }
     "2"
     {
-        "File"      "StatsCollection"
+        "File"      "StatsCollectionAchievement"
+        "Depth"     "1337"
+    }
+    "3"
+    {
+	"File"      "TrollsAndElves"
+	"Depth"     "16"
+    }
+    "4"
+    {
+        "File"      "DebugHelper"
+	"Depth"     "1"
+    }
+    "5"
+    {
+        "File"      "StatsCollectionHighscores"
         "Depth"     "1"
     }
 }

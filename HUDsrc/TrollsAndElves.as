@@ -8,7 +8,7 @@
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.*;
     import flash.events.MouseEvent;
-
+	import flash.events.Event;
     import flash.geom.ColorTransform;
 
     // Timer
@@ -56,6 +56,7 @@
         // How much padding to put between each list
         private static var S_PADDING = 2;
 
+		private var debugButtonY:Number = 100;
 
         public var res16by9Width:Number = 1920;
         public var res16by9Height:Number = 1080;
@@ -93,6 +94,7 @@
 		private var resourceCustomKV;
 		
 		public var TownHallOverlay:TownHall;
+		public var AncientTreeOverlay:AncientTree;
 
 		//Load in our other scripts here
 		public var lumberOverlay:LumberOverlay;
@@ -212,6 +214,9 @@
 		}
 		
         public function onPanelClose(obj:Object){
+			var closecls = getDefinitionByName("button_big");
+			var closebutton = new closecls();
+			PrintTable(closebutton);
         	obj.target.parent.visible = false;
         }
 
@@ -246,47 +251,33 @@
        	public function onMouseRollOut(keys:Object){
        		 globals.Loader_heroselection.gameAPI.OnSkillRollOut();
        	}
-		public function tempEvent1(args:Object) : void {
-			trace("WE ARE FREE, FREE AS A BIRD, A CYBER BIRD");
-		}
-		public function tempEvent2(args:Object) : void {
-			trace("EXTERMINATE, EXTERMINATE");
-		}
-		public function unitEvent(args:Object) : void {
-			trace("###UNIT EVENT###");
-			var delayTimer:Timer = new Timer(10, 1);
-            delayTimer.addEventListener(TimerEvent.TIMER, delayedUnit);
-            delayTimer.start();
-		}
-		public function heroEvent(args:Object) : void {
-			trace("###HERO EVENT###");
-			var delayTimer:Timer = new Timer(10, 1);
-            delayTimer.addEventListener(TimerEvent.TIMER, delayedUnit);
-            delayTimer.start();
-		}
 		public function delayedUnit(e:TimerEvent) {
-			trace("Name: "+globals.Loader_actionpanel.movieClip.middle.unitName.text);
-			trace("Trans: "+Translate("#npc_trollsandelves_hall_1"));
+			//trace("Name: "+globals.Loader_actionpanel.movieClip.middle.unitName.text);
 			var unitSelected:String = "";
 			switch(globals.Loader_actionpanel.movieClip.middle.unitName.text) {
 				case Translate("#npc_trollsandelves_hall_1"):
 				case Translate("#npc_trollsandelves_hall_2"):
 				case Translate("#npc_trollsandelves_hall_3"):
-					trace("We have ourselves a hall");
+					//trace("We have ourselves a hall");
 					unitSelected = "hall";
 				break;
+				case Translate("#npc_trollsandelves_tree"):
+					//trace("We have ourselves a tree");
+					unitSelected = "tree";
+				break;
 				default:
-					trace("Boring entity selected: "+globals.Loader_actionpanel.movieClip.middle.unitName.text);
+					//trace("Boring entity selected: "+globals.Loader_actionpanel.movieClip.middle.unitName.text);
 				break;
 			}
 			TownHallOverlay.visible = (unitSelected == "hall");
-			trace("The townhall's visible status is "+TownHallOverlay.visible);
+			AncientTreeOverlay.visible = (unitSelected == "tree");
 		}
 		
 		
 		public function onLoaded() : void {
-			//trace('globals:');
-			//PrintTable(globals, 1);
+			trace('##globals:');
+			//PrintTable(globals);
+			trace('##endglobals');
 			
 			trace("##TrollsAndElves Fixing healthbar");
 			globals.GameInterface.SetConvar("dota_health_per_vertical_marker", "25000");
@@ -319,21 +310,85 @@
 			addChild(TownHallOverlay);
 			TownHallOverlay.visible = false;
 
+			AncientTreeOverlay = new AncientTree(gameAPI);
+			addChild(AncientTreeOverlay);
+			AncientTreeOverlay.visible = false;
+			
 			gameAPI.SubscribeToGameEvent("tae_new_troll", this.newTroll);
 			gameAPI.SubscribeToGameEvent("tae_new_elf", this.newElf);
 			gameAPI.SubscribeToGameEvent("tae_build_menu", this.buildMenuToggle);
 
-			gameAPI.SubscribeToGameEvent("dota_player_update_selected_unit", this.heroEvent);
-			gameAPI.SubscribeToGameEvent("dota_player_update_query_unit", this.unitEvent);
+			var delayTimer:Timer = new Timer(10);
+            delayTimer.addEventListener(TimerEvent.TIMER, delayedUnit);
+            delayTimer.start();
 			
-			gameAPI.SubscribeToGameEvent("gameui_activated", this.tempEvent1);
-			gameAPI.SubscribeToGameEvent("gameui_hidden", this.tempEvent2);
-
 			//Resizing is blitz
 			Globals.instance.resizeManager.AddListener(this);
-			trace("###DONE");
+			
+			createDebugButton("LIST", debugButton1Func);
+			createDebugButton("TOP", debugButton2Func);
+			createDebugButton("SAVE", debugButton3Func);
 		}
-
+		public function createDebugButton(name:String, func:Function) {
+			var btncls = getDefinitionByName("button_big");
+			var debugButton = new btncls();
+			debugButton.label = name;
+			debugButton.x = 100;
+			debugButton.y = debugButtonY;
+			debugButton.visible = true;
+			debugButton.addEventListener(ButtonEvent.CLICK, func);
+			addChild(debugButton);
+			
+			debugButtonY = debugButtonY + 100;
+		}
+		
+		public function debugButton1Func(args:Object) {
+			globals.Loader_StatsCollectionHighscores.movieClip.GetPersonalLeaderboard("TEST_MOD_ID", debugTest1);
+		}
+		public function debugButton2Func(args:Object) {
+			globals.Loader_StatsCollectionHighscores.movieClip.GetTopLeaderboard("TEST_MOD_ID", debugTest2);
+		}
+		public function debugButton3Func(args:Object) {
+			globals.Loader_StatsCollectionHighscores.movieClip.SaveHighScore("TEST_MOD_ID", 1, 3);
+		}
+		public function debugTest1(jsonInfo:Object) {
+			trace("##CALLBACK");
+			var i:int = 0;
+			for (var highscoreID in jsonInfo) {
+				i++;
+				trace(highscoreID);
+				var leaderboard:Array = jsonInfo[highscoreID];
+				for each (var entry:Object in leaderboard) {
+					trace(entry.highscoreValue);
+					trace(entry.date);
+				}
+			}
+			if (i == 0) {
+				trace("No highscores </3");
+			}
+			trace("##END_CALLBACK");
+		}
+		public function debugTest2(jsonInfo:Object) {
+			trace("##CALLBACK2");
+						var i:int = 0;
+			for (var highscoreID in jsonInfo) {
+				i++;
+				trace(highscoreID);
+				var leaderboard:Array = jsonInfo[highscoreID];
+				for each (var entry:Object in leaderboard) {
+					trace(entry.userName);
+					trace(entry.steamID);
+					trace(entry.highscoreValue);
+					trace(entry.date);
+				}
+			}
+			if (i == 0) {
+				trace("No highscores </3");
+			}
+			trace("##END_CALLBACK2");
+		}
+		
+		
 		public function buildMenuToggle(keys:Object){
 			if (globals.Players.GetLocalPlayer() == keys.pid)
 			{
@@ -440,6 +495,7 @@
 						}
 						lumberOverlay.onScreenResize(0, false);
 						TownHallOverlay.onScreenResize(0, false);
+						AncientTreeOverlay.onScreenResize(0, false);
 					}
 					trace("###TrollsAndElves Resizing for 16:9 resolution");
 					resWidth = res16by9Width;
@@ -451,6 +507,7 @@
 						//lumberOverlay.onResize(1, globals.instance.Game.IsHUDFlipped());
 						lumberOverlay.onScreenResize(1, false);
 						TownHallOverlay.onScreenResize(1, false);
+						AncientTreeOverlay.onScreenResize(1, false);
 					}
 					trace("###TrollsAndElves Resizing for 16:10 resolution");
 					resWidth = res16by10Width;
@@ -464,6 +521,7 @@
 					//lumberOverlay.onScreenResize(2, globals.instance.Game.IsHUDFlipped());
 					lumberOverlay.onScreenResize(2, false);
 					TownHallOverlay.onScreenResize(2, false);
+					AncientTreeOverlay.onScreenResize(2, false);
 				}
 				resWidth = res4by3Width;
 				resHeight = res4by3Height;
@@ -477,6 +535,44 @@
             this.scaleY = re.ScreenHeight/maxStageHeight;
 		}
 		
+		
+		public function hookAndReplace(btn:MovieClip, type:String, eventType:String="", func:Function=null) : MovieClip {
+			trace("##HOOK a");
+			var parent = btn.parent;
+			trace(parent);
+			
+			trace("##HOOK b");
+			var oldx = btn.x;
+			trace("##HOOK c");
+			var oldy = btn.y;
+			trace("##HOOK d");
+			var oldwidth = btn.width;
+			trace("##HOOK e");
+			var oldheight = btn.height;
+			trace("##HOOK f");
+			
+			var newObjectClass = getDefinitionByName(type);
+			trace("##HOOK g");
+			var newObject = new newObjectClass();
+			trace("##HOOK h");
+			newObject.x = oldx;
+			trace("##HOOK i");
+			newObject.y = oldy;
+			trace("##HOOK j");
+			newObject.width = oldwidth;
+			trace("##HOOK k");
+			newObject.height = oldheight;
+			trace("##HOOK m");
+			
+			parent.removeChild(btn);
+			trace("##HOOK n");
+			parent.addChild(newObject);
+			
+			if (eventType != "") {
+				newObject.addEventListener(eventType, func);
+			}
+			return newObject;
+		}
 		// Shamelessly stolen from Frota
         public function strRep(str, count) {
             var output = "";
@@ -507,13 +603,13 @@
         	}
 
         	if(indent == 0) {
-        		trace(t.name+" "+t+": {")
+        		trace("{");
         	}
 
         	// Stop loops
         	done ||= new flash.utils.Dictionary(true);
         	if(done[t]) {
-        		trace(strRep("\t", indent)+"<loop object> "+t);
+        		trace(strRep("\t", indent+1)+"\"object\" : \"<loop object>"+t+"\"");
         		return;
         	}
         	done[t] = true;
@@ -522,73 +618,83 @@
         	var thisClass = flash.utils.getQualifiedClassName(t);
 
         	// Print methods
+			trace(strRep("\t", indent+1) + "\"methods\" : [");
 			for each(key1 in flash.utils.describeType(t)..method) {
 				// Check if this is part of our class
 				if(key1.@declaredBy == thisClass) {
 					// Yes, log it
-					trace(strRep("\t", indent+1)+key1.@name+"()");
+					trace(strRep("\t", indent+2)+"\""+key1.@name+"()\",");
 				}
 			}
+			trace(strRep("\t", indent+2)+"\"###IGNOREME###\""); //This is to validate the json
+			trace(strRep("\t", indent+1) + "],");
 
 			// Check for text
 			if("text" in t) {
-				trace(strRep("\t", indent+1)+"text: "+t.text);
+				trace(strRep("\t", indent+1)+"\"text\" : \""+escape(t.text)+"\",");
 			}
 
 			// Print variables
+			//trace(strRep("\t", indent+1)+"##DEBUG: We are doing variables now");
 			for each(key1 in flash.utils.describeType(t)..variable) {
 				key = key1.@name;
 				v = t[key];
 
 				// Check if we can print it in one line
 				if(isPrintable(v)) {
-					trace(strRep("\t", indent+1)+key+": "+v);
+					trace(strRep("\t", indent+1)+"\""+key+"\" : \""+v+"\",");
 				} else {
 					// Open bracket
-					trace(strRep("\t", indent+1)+key+": {");
+					trace(strRep("\t", indent+1)+"\""+key+"\" : {");
 
 					// Recurse!
 					PrintTable(v, indent+1, done)
 
 					// Close bracket
-					trace(strRep("\t", indent+1)+"}");
+					trace(strRep("\t", indent+1)+"},");
 				}
 			}
 
 			// Find other keys
+			//trace(strRep("\t", indent+1)+"##DEBUG: We are doing keys now");
 			for(key in t) {
 				v = t[key];
 
 				// Check if we can print it in one line
 				if(isPrintable(v)) {
-					trace(strRep("\t", indent+1)+key+": "+v);
+					trace(strRep("\t", indent+1)+"\""+key+"\" : \""+v+"\",");
 				} else {
 					// Open bracket
-					trace(strRep("\t", indent+1)+key+": {");
+					trace(strRep("\t", indent+1)+"\""+key+"\" : {");
 
 					// Recurse!
 					PrintTable(v, indent+1, done)
 
 					// Close bracket
-					trace(strRep("\t", indent+1)+"}");
+					trace(strRep("\t", indent+1)+"},");
 				}
         	}
 
         	// Get children
+			//trace(strRep("\t", indent+1)+"##DEBUG: We are doing children now");
+			trace(strRep("\t", indent+1)+"\"children\" : [");
         	if(t is MovieClip) {
         		// Loop over children
 	        	for(i = 0; i < t.numChildren; i++) {
 	        		// Open bracket
-					trace(strRep("\t", indent+1)+t.name+" "+t+": {");
-
+					trace(strRep("\t", indent+2)+"{");
+					//add type
+					trace(strRep("\t", indent+3)+"\"name\" : \""+t.name+"\",");
+					trace(strRep("\t", indent+3)+"\"type\" : \""+t+"\",");
 					// Recurse!
-	        		PrintTable(t.getChildAt(i), indent+1, done);
+	        		PrintTable(t.getChildAt(i), indent+2, done);
 
 	        		// Close bracket
-					trace(strRep("\t", indent+1)+"}");
+					trace(strRep("\t", indent+2)+"},");
 	        	}
+				trace(strRep("\t", indent+2)+"\"###IGNOREME###\""); //This is to validate the json
         	}
-
+			trace(strRep("\t", indent+1)+"]");
         	// Close bracket
         	if(indent == 0) {
         		trace("}");

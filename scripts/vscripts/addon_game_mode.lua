@@ -4,6 +4,8 @@ function Precache( context )
     PrecacheUnitByNameSync("npc_dota_creature_creep_melee", context)
     PrecacheUnitByNameSync("npc_dota_goodguys_tower1_top", context)
     PrecacheUnitByNameSync("npc_dota_hero_wisp", context)
+    
+    PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf", context) -- Troll reveal
 end
 function Activate()
     GameRules.TrollsAndElves = TrollsAndElvesGameMode:new()

@@ -598,14 +598,14 @@
                     }
                     "FireEffect"
                     {
-                        "EffectName"        "particles/units/heroes/hero_rattletrap/rattletrap_rocket_flare_explosion.vpcf"
+                        "EffectName"        "particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
                         "EffectAttachType"  "PATTACH_ABSORIGIN"
                         "Target"            "POINT"
                     }
         }
         "Precache"
         {
-            "particle_folder"      "particles/units/heroes/hero_rattletrap"
+            "particle_folder"      "particles/units/heroes/hero_lina"
         }
 	}
 	//"trollsandelves_wisp_harvest"

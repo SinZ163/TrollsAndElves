@@ -48,7 +48,6 @@
 			"1"	"npc_trollsandelves_rock_2"
 			"2"	"npc_trollsandelves_rock_3"
 			"3"	"npc_trollsandelves_hall_1"
-			"4"	"item_trollsandelves_armor_12"
 		}
 	}
 }
