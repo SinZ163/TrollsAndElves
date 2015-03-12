@@ -1936,4 +1936,45 @@
 			}
 		}
 	}
+
+	"item_trollsandelves_elf_beautiful_stars"
+	{
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"						"item_datadriven"
+		"ID"							"817"
+//		"AbilityTextureName"			"item_trollsandelves_elf_beautiful_stars"
+
+		"precache"
+		{
+			"soundfile"				"sounds/items/smoke_of_deceit.vsnd"
+		}
+		
+		//Stats
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.0"
+		"AbilityManaCost"				"75"
+		"AbilityCooldown"				"35"
+		
+		"ItemCost"					"0"
+		"ItemDisassembleRule"		"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"ItemShopTags"				""
+		"ItemQuality"				"common"
+		"ItemAliases"				"Beautiful Stars"
+		"ItemShareability"			"ITEM_NOT_SHAREABLE"
+		"ItemSellable"				"0"
+		
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"Target"			"CASTER"
+				"EffectName"		"DOTA_Item.SmokeOfDeceit.Activate"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"datadriven/item_beautiful_stars"
+				"Function"		"BeautifulStars"
+			}
+		}
+	}
 }
