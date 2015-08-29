@@ -1,2 +1,0 @@
-function onBuildingSummon(keys)
-end
