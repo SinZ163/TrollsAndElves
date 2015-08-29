@@ -1,4 +1,4 @@
-﻿TechBuilding = {
+TechBuilding = {
 	npc_trollsandelves_rock_1 = true
 } --what is this doing here
 
@@ -16,8 +16,26 @@ function TrollsAndElvesGameMode:new (o)
 end
 
 function TrollsAndElvesGameMode:TechAdvance(player, building)
+    print(player:GetClassname())
 	print("Upgrading " .. building)
-	
+	for k,v in pairs(player) do
+        if type(v) == "table" then
+            print(" "..k.." = {")
+            for k2,v2 in pairs(v) do
+                if type(v2) == "table" then
+                    v2 = "table"
+                elseif type(v2) == "userdata" then
+                    v2 = "userdata"
+                end
+                print("     "..tostring(k2).."="..tostring(v2))
+            end
+            print(" }")
+        elseif type(v) == "userdata" then
+            print(" "..k.."= userdata")
+        else
+            print(" "..k.."="..v)
+        end
+    end
 	player.TechBuildings[building] = true
 	if building == "npc_trollsandelves_rock_1" then 
 		local buildmenu = player:GetAssignedHero():FindAbilityByName("trollsandelves_build_menu")
@@ -28,7 +46,9 @@ end
 
 function TrollsAndElvesGameMode:InitGameMode()
 	Msg("Hello World, My name is TrollsAndElves!")
-	
+	GameRules:EnableCustomGameSetupAutoLaunch(false)
+    GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 12)
+    GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 12)
 	--CEntities:FindByClassname(nil, "dota_base_game_mode"):SetFogOfWarDisabled(true)
 	
     --Event registration --
@@ -42,24 +62,36 @@ function TrollsAndElvesGameMode:InitGameMode()
     --self._scriptBind:BeginThink('TrollsAndElvesThink', Dynamic_Wrap(TrollsAndElvesGameMode, 'Think'), 0.1)
 end
 
-function TrollsAndElvesGameMode:onNPCSpawned(keys)
-	print("Sending steamID's")
-	-- This is for Flash to know its steamID
-	j = {}
-	for i=0,9 do
-		j[tostring(i)] = PlayerResource:GetSteamAccountID(i)
-	end
-	FireGameEvent("stat_collection_steamID", j)
+-- Listen for changes in the current state
+ListenToGameEvent('game_rules_state_change', function(keys)
+    -- Grab the current state
+    local state = GameRules:State_Get()
+    
+    if state == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+        for i=1,(PlayerResource:GetPlayerCount() or 1) do
+            local player = PlayerResource:GetPlayer(i)
+            PlayerResource:SetCustomTeamAssignment(i, DOTA_TEAM_GOODGUYS)
+        end
+        GameRules:LockCustomGameSetupTeamAssignment(true)
+        GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_invoker")
+        GameRules:SetCustomGameSetupRemainingTime(1)
+    end
+end, nil)
 
+function TrollsAndElvesGameMode:onNPCSpawned(keys)
     local spawnedUnit = EntIndexToHScript(self.entindex)
-    print(spawnedUnit:GetClassname())
+    
+    if spawnedUnit:GetClassname() ~= "npc_dota_creep" then
+        print(spawnedUnit:GetClassname())
+    end
     if spawnedUnit:GetClassname() == "npc_dota_hero_troll_warlord" or spawnedUnit:GetClassname() == "npc_dota_hero_lycan" then
         print("Troll detected!")
         local ability_1 = spawnedUnit:FindAbilityByName("trollsandelves_troll_invis")
         local ability_2 = spawnedUnit:FindAbilityByName("trollsandelves_troll_pillage")
         ability_1:SetLevel(1)
         ability_2:SetLevel(1)
-    elseif spawnedUnit:GetClassname() == "npc_dota_hero_Invoker" then --yep capital I
+    elseif spawnedUnit:GetClassname() == "npc_dota_hero_invoker" then --yep capital I
+        EntityInit:NewByClassname(spawnedUnit:GetPlayerOwner(), "player")
     	EntityInit:NewByType(spawnedUnit, "Builder")
     end
 end
@@ -103,17 +135,10 @@ function TrollsAndElvesGameMode:onPlayerConnect(keys)
 		for k,v in pairs(Entities:FindAllByClassname("ent_dota_tree")) do 
 		    local u = CreateUnitByName( "npc_tree_dummy", Vector(0,0,0), true, nil, nil, 2)
 		    u:SetOrigin(v:GetOrigin())
-		    u:AddNewModifier(v, nil, "modifier_phased", {duration = -1}) 
+		    u:AddNewModifier(v, nil, "modifier_phased", {duration = -1})
 		end
 		treesinit = true
 	end
-
-	player = EntIndexToHScript(self.index + 1)
-	EntityInit:NewByClassname(player, "player")
-
-	FireGameEvent("tae_new_troll",{pid=player:GetPlayerID()})
-	
-	player:SetTeam(DOTA_TEAM_GOODGUYS)
 end
 
 function TrollsAndElvesGameMode:ModifyLumber(player, sum) --negative to reduce
@@ -142,21 +167,13 @@ function TrollsAndElvesGameMode:Think()
     self.t0 = now
 end
 
+function TrollsAndElvesGameMode.PlayerWantsToSpawn(cmdname, origin, unit)
+	
+end
+
 function TrollsAndElvesGameMode.PlayerWantsToBuild(cmdname, building) --maybe add some stuff to do stuff here
 	print(building)
-	local player = Convars:GetCommandClient()
-    
-    --temp
-    print("###StatsCollection sending stats")
-    FireGameEvent("stat_collection_part", {
-        json=JSON:encode({
-            modid="TrollsAndElves",
-			duration=1337.0,
-			matchID="thisisnotanactualmatchplzdontkillme"
-        })
-    })
-	FireGameEvent("stat_collection_send", {})
-    
+	local player = Convars:GetCommandClient()    
 	player:GetAssignedHero():FindAbilityByName("trollsandelves_construct_building"):SetHidden(false)
 	if UnitsCustomKV[building] then
         player.WantsToBuild = building
@@ -189,5 +206,6 @@ function TrollsAndElvesGameMode.UnitSelected(keys)
 	
 end
 
+Convars:RegisterCommand("tae_use_spell", TrollsAndElvesGameMode.PlayerWantsToSpawn, "Build thing", 0)
 Convars:RegisterCommand("tae_building_queue_unit", TrollsAndElvesGameMode.BuildingQueueUnit, "Build thing", 0)
 Convars:RegisterCommand("tae_wants_to_build", TrollsAndElvesGameMode.PlayerWantsToBuild, "Build thing", 0)

@@ -2,11 +2,14 @@
 	
 	import flash.display.MovieClip;
 	import scaleform.clik.events.ButtonEvent;
+	import flash.events.MouseEvent;
+	
+	import ValveLib.Globals;
 	
     import flash.utils.getDefinitionByName;
 	
 	public class AncientTree extends MovieClip {
-		public var gameAPI:Object;
+		private var gameAPI:Object;
 		
 		private var  left16by9X = 700;
 		private var right16by9X = 700;
@@ -40,20 +43,20 @@
 		public var text7;
 		public var text8;
 		
-		public function AncientTree(gameapi:Object) {
+		public function AncientTree(gameAPI:Object) {
 			this.gameAPI = gameAPI;
 			this.x = 10;
 			this.y = 10;
 			
 			hookAndReplace(bg, "DB4_floading_panel");
-			hookAndReplace(item1, "newlayout_inset", ButtonEvent.CLICK, onAbility1Used);
-			hookAndReplace(item2, "newlayout_inset", ButtonEvent.CLICK, onAbility2Used);
-			hookAndReplace(item3, "newlayout_inset", ButtonEvent.CLICK, onAbility3Used);
-			hookAndReplace(item4, "newlayout_inset", ButtonEvent.CLICK, onAbility4Used);
-			hookAndReplace(item5, "newlayout_inset", ButtonEvent.CLICK, onAbility5Used);
-			hookAndReplace(item6, "newlayout_inset", ButtonEvent.CLICK, onAbility6Used);
-			hookAndReplace(item7, "newlayout_inset", ButtonEvent.CLICK, onAbility7Used);
-			hookAndReplace(item8, "newlayout_inset", ButtonEvent.CLICK, onAbility8Used);
+			hookAndReplace(item1, "newlayout_inset", MouseEvent.CLICK, onAbility1Used);
+			hookAndReplace(item2, "newlayout_inset", MouseEvent.CLICK, onAbility2Used);
+			hookAndReplace(item3, "newlayout_inset", MouseEvent.CLICK, onAbility3Used);
+			hookAndReplace(item4, "newlayout_inset", MouseEvent.CLICK, onAbility4Used);
+			hookAndReplace(item5, "newlayout_inset", MouseEvent.CLICK, onAbility5Used);
+			hookAndReplace(item6, "newlayout_inset", MouseEvent.CLICK, onAbility6Used);
+			hookAndReplace(item7, "newlayout_inset", MouseEvent.CLICK, onAbility7Used);
+			hookAndReplace(item8, "newlayout_inset", MouseEvent.CLICK, onAbility8Used);
 			
 			addChild(text1);
 			addChild(text2);
@@ -65,7 +68,12 @@
 			addChild(text8);
 		}
 		public function onAbilityUsed(ability:int) {
-			gameAPI.SendServerCommand("tae_use_spell " + ability.toString());
+			var i:int = ability + 6;
+			trace("EXECUTING ABILITY");
+			trace(i.toString());
+			//gameAPI.SendServerCommand("tae_use_spell Ancient_Tree npc_trollsandelves_collector_" + ability.toString());
+			//gameAPI.SendServerCommand("dota_ability_execute "+i.toString());
+			Globals.instance.Loader_action_panel.movieClip.gameAPI.OnAbilityClicked(i);
 		}
 		public function onAbility1Used(obj:Object) {
 			onAbilityUsed(1);
@@ -124,7 +132,7 @@
 					break;
 				case 2:
 					//4by3
-					trace("##LumberOverlay setting position for 16by9 resolutions");
+					trace("##LumberOverlay setting position for 4by3 resolutions");
 					if (left) {
 						this.x = left4by3X; //I have no actual idea where this should be.
 					} else {

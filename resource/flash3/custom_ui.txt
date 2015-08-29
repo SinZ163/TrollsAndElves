@@ -7,23 +7,13 @@
     }
     "2"
     {
-        "File"      "StatsCollectionAchievement"
-        "Depth"     "1337"
+	"File"      "TrollsAndElves"
+	"Depth"     "18"
     }
     "3"
     {
-	"File"      "TrollsAndElves"
-	"Depth"     "16"
-    }
-    "4"
-    {
         "File"      "DebugHelper"
 	"Depth"     "1"
-    }
-    "5"
-    {
-        "File"      "StatsCollectionHighscores"
-        "Depth"     "1"
     }
 }
 

@@ -29,19 +29,10 @@
         "stat_collection_send"
         {
         }
-	"stat_collection_steamID"
-	{
-            "0"		    "long"
-            "1"		    "long"
-            "2"		    "long"
-            "3"		    "long"
-            "4"		    "long"
-            "5"		    "long"
-            "6"		    "long"
-            "7"		    "long"
-            "8"		    "long"
-            "9"		    "long"
-	}
+   	 "stat_collection_steamID" //Note this one event will power both StatsCollectionAchievments, StatsCollectionRPG aswell as StatsCollectionHighscores
+   	 {
+   	         "ids"                        "string"
+   	 }
 	//End StatsCollection
 
 	// This is fired when a player's lumber count changes

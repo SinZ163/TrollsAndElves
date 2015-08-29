@@ -326,8 +326,8 @@
 			Globals.instance.resizeManager.AddListener(this);
 			
 			createDebugButton("LIST", debugButton1Func);
-			createDebugButton("TOP", debugButton2Func);
-			createDebugButton("SAVE", debugButton3Func);
+			createDebugButton("CREATE", debugButton2Func);
+			createDebugButton("LOAD", debugButton3Func);
 		}
 		public function createDebugButton(name:String, func:Function) {
 			var btncls = getDefinitionByName("button_big");
@@ -343,49 +343,51 @@
 		}
 		
 		public function debugButton1Func(args:Object) {
-			globals.Loader_StatsCollectionHighscores.movieClip.GetPersonalLeaderboard("TEST_MOD_ID", debugTest1);
+			globals.Loader_StatsCollectionRPG.movieClip.GetList("e0722e12ab344c4a85c5b28f7237673e", debugTest1);
 		}
 		public function debugButton2Func(args:Object) {
-			globals.Loader_StatsCollectionHighscores.movieClip.GetTopLeaderboard("TEST_MOD_ID", debugTest2);
+			globals.Loader_StatsCollectionRPG.movieClip.CreateSave("e0722e12ab344c4a85c5b28f7237673e", debugTest2);
 		}
 		public function debugButton3Func(args:Object) {
-			globals.Loader_StatsCollectionHighscores.movieClip.SaveHighScore("TEST_MOD_ID", 1, 3);
+			globals.Loader_StatsCollectionRPG.movieClip.GetSave("e0722e12ab344c4a85c5b28f7237673e", 1, debugTest3);
 		}
-		public function debugTest1(jsonInfo:Object) {
+		public function debugTest1(jsonArray:Array) {
 			trace("##CALLBACK");
-			var i:int = 0;
-			for (var highscoreID in jsonInfo) {
-				i++;
-				trace(highscoreID);
-				var leaderboard:Array = jsonInfo[highscoreID];
-				for each (var entry:Object in leaderboard) {
-					trace(entry.highscoreValue);
-					trace(entry.date);
+			for each (var entry:Object in jsonArray) {
+				trace(entry.saveID);
+				trace("##METADATA");
+				for (var metaData in entry.metaData) {
+					trace("entry.metaData." + metaData + " = " + entry.metaData[metaData]);
+					//
 				}
-			}
-			if (i == 0) {
-				trace("No highscores </3");
+				trace("##END_METADATA");
+				trace(entry.dateRecorded.toString());
 			}
 			trace("##END_CALLBACK");
 		}
-		public function debugTest2(jsonInfo:Object) {
+		public function debugTest2(saveID:int) {
 			trace("##CALLBACK2");
-						var i:int = 0;
-			for (var highscoreID in jsonInfo) {
-				i++;
-				trace(highscoreID);
-				var leaderboard:Array = jsonInfo[highscoreID];
-				for each (var entry:Object in leaderboard) {
-					trace(entry.userName);
-					trace(entry.steamID);
-					trace(entry.highscoreValue);
-					trace(entry.date);
-				}
+			trace(saveID.toString());
+			var jsonData:Object = {
+				"hi" : "bob"
+			};
+			var metaData:Object = {
+				"hello" : "world"
 			}
-			if (i == 0) {
-				trace("No highscores </3");
-			}
+			globals.Loader_StatsCollectionRPG.movieClip.SaveData("e0722e12ab344c4a85c5b28f7237673e", saveID, jsonData, metaData, saveCallback);
 			trace("##END_CALLBACK2");
+		}
+		public function debugTest3(jsonData:Object) {
+			trace("##CALLBACK3");
+			for (var info in jsonData) {
+				trace("jsonData." + info + " = " + jsonData[info]);
+			}
+			trace("##END_CALLBACK3");
+		}
+		public function saveCallback(success:Boolean) {
+			trace("##CALLBACK_SAVE");
+			trace(success.toString());
+			trace("##END_CALLBACK_SAVE");
 		}
 		
 		
@@ -489,7 +491,7 @@
 						curRes = 0;
 						//lumberOverlay.onScreenResize(0, globals.instance.Game.IsHUDFlipped());
 						try {
-							trace("###TrollsAndElves HUD Flipped to "+globals.instance.Game.IsHUDFlipped());
+							trace("###TrollsAndElves HUD Flipped to "+globals.instance.Game.IsHUDFlipped().toString());
 						} catch (Exception) {
 							trace("###ERRROR Ok, this didn't work..."); //This actually is used, not quite sure why yet.
 						}
@@ -598,7 +600,7 @@
 
         	// Validate input
         	if(isPrintable(t)) {
-        		trace("PrintTable called with incorrect arguments!");
+        		trace(t);
         		return;
         	}
 

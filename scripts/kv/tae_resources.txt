@@ -45,8 +45,8 @@
 		}
 		elf_buildings {
 			"0"	"npc_trollsandelves_rock_1"
-			"1"	"npc_trollsandelves_rock_2"
-			"2"	"npc_trollsandelves_rock_3"
+			"1"	"npc_trollsandelves_tree"
+			"2"	"npc_trollsandelves_house_1"
 			"3"	"npc_trollsandelves_hall_1"
 		}
 	}

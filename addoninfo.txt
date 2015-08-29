@@ -2,18 +2,10 @@
 
 "AddonInfo"
 {
-     addonSteamAppID         816                                         // 816 is the app ID for Dota2 Staging
-     addontitle              "Trolls And Elves"                          // Add-on title that shows up in Add-ons list. ~20 chars max
-     addonversion            1.0.0                                       // Version number of add-on version of the form <major>.<minor>
-     addontagline            "A game of cat and mouse, Trolls and Elves" // Add-on tagline or wrap-up- a short description. ~100 chars max
-     addonauthor             "SinZ"                                      // Name/alias of the author
-     addonSteamGroupName     "ModDota"                                   // (Optional) Steam group related to the add-on. We use this to construct a URL to the group page.
-     addonauthorSteamID      "STEAM_0:1:39518577"                        // (Optional) Steam ID of author. We use this to construct a URL to the author's page.
-     addonContent_Campaign   0                                           // This addon provides muliple connected maps with a finale
-     addonURL0               "https://github.com/SinZ163/TrollsAndElves" // An html home page for the add-on that includes a download link.
-
-     // short description that appears in the Add-on list screen...
-     addonDescription        "This is a description, it should be more usful than this but it isn't, silly me"
-
      maps		      "tne_1"
+     "IsPlayable"	      "1"
+     "tne_1"
+     {
+          "MaxPlayers"	"12"
+     }
 }
